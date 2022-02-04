@@ -52,11 +52,46 @@ public class Recursion{
     }
   }
 
+  /*
+  *@param length how long the words must be
+  *param word the variable to store the partial solution (should start at "")
+  *@return the number of words that have no adjacent matching letters using the letters a-z.
+  *Repetition allowed except when letters are adjacent.
+  */
+  public static long countNoDoubleLetterWords(int length,String word){
+    char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    // nope : String s = printNoDoubleLetterWords(length, word, alphabet);
+    return 0l;
+  }
+
+  /*
+  *@param s any string
+  *@return a string that is the reversed version of s, do NOT use built in methods to do so, use recursion.
+  */
+  public static String reverse(String s){
+    if (s.length() > 1){
+      return reverse(s.substring(1)) + s.charAt(0);
+    }
+    else{
+      return s;
+    }
+  }
+
+  /*
+  *@param n any non-negative value you want to take the sqrt of
+  *@return the approximate sqrt of n within a tolerance of 0.001%
+  */
+  public static double sqrt(double n){
+    //Hint: This is a wrapper method.
+    return 0;
+  }
+
   public static void main(String[] args){
     printAllWords(3);
     System.out.println("---------");
     char[] test1 = {'m','a','y'};
     printNoDoubleLetterWords(3, test1);
-
+    System.out.println("---------");
+    System.out.println(reverse("Hey I'm Maya"));
   }
 }
