@@ -59,10 +59,18 @@ public class Recursion{
   *Repetition allowed except when letters are adjacent.
   */
   public static long countNoDoubleLetterWords(int length,String word){
-    char[] alphabet = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    // nope : String s = printNoDoubleLetterWords(length, word, alphabet);
-    return 0l;
-  }
+    char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    if (length > 0){
+      for (char letter : letters){
+        if (word.lastIndexOf(letter) != word.length() - 1 || word.lastIndexOf(letter) == -1){
+          return 1l + countNoDoubleLetterWords(length - 1, word + letter, letters);
+        }
+      }
+    }
+    else{
+      return 1l;
+    }
+  } //okay i did this thru github in class since terminal no load after 18 min bad tried 2 computers
 
   /*
   *@param s any string
