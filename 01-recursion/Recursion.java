@@ -63,7 +63,7 @@ public class Recursion{
     if (length > 0){
       for (char letter : letters){
         if (word.lastIndexOf(letter) != word.length() - 1 || word.lastIndexOf(letter) == -1){
-          return 1l + countNoDoubleLetterWords(length - 1, word + letter, letters);
+          return 1l + countNoDoubleLetterWords(length - 1, word + letter);
         }
       }
     }
