@@ -63,13 +63,14 @@ public class Recursion{
     if (length > 0){
       for (char letter : letters){
         if (word.lastIndexOf(letter) != word.length() - 1 || word.lastIndexOf(letter) == -1){
-          return 1l + countNoDoubleLetterWords(length - 1, word + letter);
+          return 1l + countNoDoubleLetterWords(length - 1, word + letter); // BADD
         }
       }
     }
     else{
       return 1l;
     }
+    return 1l;
   } //okay i did this thru github in class since terminal no load after 18 min bad tried 2 computers
 
   /*
@@ -94,6 +95,24 @@ public class Recursion{
     return 0;
   }
 
+  /*
+  *@param n any non-negative value
+  *@return the nth term of the fibonacci sequence. 0, 1, 1, 2, 3, 5 etc.
+  */
+  public static int fibIter(int n, int f1, int f2){
+    if (n > 1){
+      return fibIter(n-1, f1 + f2, f1);
+    }
+    else if (n == 1){
+      return f1;
+    }
+    else{
+      return f2;
+    }
+  }
+    //DO NOT call fibIter more than once
+
+
   public static void main(String[] args){
     printAllWords(3);
     System.out.println("---------");
@@ -101,5 +120,16 @@ public class Recursion{
     printNoDoubleLetterWords(3, test1);
     System.out.println("---------");
     System.out.println(reverse("Hey I'm Maya"));
+    System.out.println("---------");
+    System.out.println(countNoDoubleLetterWords(3, ""));
+    System.out.println("---------");
+    System.out.println(fibIter(0, 1, 0));
+    System.out.println(fibIter(1, 1, 0));
+    System.out.println(fibIter(2, 1, 0));
+    System.out.println(fibIter(3, 1, 0));
+    System.out.println(fibIter(4, 1, 0));
+    System.out.println(fibIter(5, 1, 0));
+    System.out.println(fibIter(6, 1, 0));
+    System.out.println(fibIter(7, 1, 0));
   }
 }
