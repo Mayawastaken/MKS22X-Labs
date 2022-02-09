@@ -60,17 +60,18 @@ public class Recursion{
   */
   public static long countNoDoubleLetterWords(int length,String word){
     char[] letters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    long counter = 0l;
     if (length > 0){
       for (char letter : letters){
         if (word.lastIndexOf(letter) != word.length() - 1 || word.lastIndexOf(letter) == -1){
-          return 1l + countNoDoubleLetterWords(length - 1, word + letter); // BADD
+          counter += countNoDoubleLetterWords(length - 1, word + letter); // BADD
         }
       }
     }
     else{
-      return 1l;
+      counter += 1l;
     }
-    return 1l;
+    return counter;
   } //okay i did this thru github in class since terminal no load after 18 min bad tried 2 computers
 
   /*
@@ -130,7 +131,9 @@ public class Recursion{
     System.out.println("---------");
     System.out.println(reverse("Hey I'm Maya"));
     System.out.println("---------");
-    System.out.println(countNoDoubleLetterWords(3, ""));
+    System.out.println(countNoDoubleLetterWords(1, "")); //26
+    System.out.println(countNoDoubleLetterWords(2, "")); //26*25
+    System.out.println(countNoDoubleLetterWords(3, "")); //26*25^2
     System.out.println("---------");
     System.out.println(fibIter(0, 1, 0));
     System.out.println(fibIter(1, 1, 0));
