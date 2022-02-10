@@ -26,6 +26,31 @@ public class RecursionForReal{
     return (target == 0);
   }
 
+  public static boolean groupSum5(int start, int[] nums, int target) {
+    if (start < nums.length && target != 0){
+      if (nums[start] % 5 == 0){
+        if (start + 1 < nums.length && nums[start+1] == 1){
+          return (groupSum5(start+2, nums, target - nums[start]));
+        }
+        else{
+          return (groupSum5(start+1, nums, target - nums[start]));
+        }
+      }
+      else{
+        return (groupSum5(start+1, nums, target - nums[start]) || groupSum5(start+1, nums, target));
+      }
+    }
+    if (start < nums.length){
+      if (nums[start] % 5 == 0){
+        return false;
+      }
+      else{
+        return groupSum5(start+1, nums, target);
+      }
+    }
+    return (target == 0);
+  }
+
 
   public static void main(String[] args){
     int[] test1 = {2,4,8};
