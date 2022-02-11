@@ -58,6 +58,23 @@ public class RecursionForReal{
     return (target == 0);
   }
 
+  public static boolean groupSumClump(int start, int[] nums, int target) {
+    if (start < nums.length && target != 0){
+      int i = 1;
+      while (i < nums.length - start){
+        if (nums[start] == nums[start + i]){
+          i++;
+        }
+        else{
+          break;
+        }
+      }
+      System.out.println("i:" + i + "---- nums[start]" + nums[start] + "--- target: " + target);
+      return (groupSumClump(start+i, nums, target - i * nums[start]) || groupSumClump(start+1, nums, target));
+    }
+    return (target == 0);
+  } //NO FULL WORK
+
   // public static boolean split53(int[] nums) {
   //
   // }
@@ -67,6 +84,9 @@ public class RecursionForReal{
     int[] test1 = {2,4,8};
     int[] test2 = {2,3,7,9};
     int[] test3 = {5,6,2};
+    int[] test4 = {2,4,8};
+    int[] test5 = {1,2,4,8,1};
+    int[] test6 = {2,2,4,8};
     System.out.println("groupSum----------");
     System.out.println(groupSum(0, test1, 10));
     System.out.println(groupSum(0, test1, 14));
@@ -77,5 +97,10 @@ public class RecursionForReal{
     System.out.println(groupSum(0, test3, 9));
     System.out.println(groupSum(0, test3, 10));
     System.out.println(groupSum(0, test3, 11));
+    System.out.println("groupSum6---------");
+    System.out.println(groupSumClump(0, test4, 10));
+    System.out.println(groupSumClump(0, test5, 14));
+    System.out.println(groupSumClump(0, test5, 14));
+
   }
 }
