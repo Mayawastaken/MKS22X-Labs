@@ -74,16 +74,30 @@ public class RecursionForReal{
     return (target == 0);
   }
 
-  public static boolean wantedSplitArray(int[] nums, int start, int sum1, int sum2){
+  public static boolean splitArray(int[] nums, int start, int sum1, int sum2){
     if (start < nums.length){
-      return (wantedSplitArray(nums, start+1, sum1 + nums[start], sum2) || wantedSplitArray(nums, start+1, sum1, sum2 + nums[start]));
+      return (splitArray(nums, start+1, sum1 + nums[start], sum2) || splitArray(nums, start+1, sum1, sum2 + nums[start]));
     }
     return (sum1 == sum2);
   }
 
   public static boolean splitArray(int[] nums) {
-    return wantedSplitArray(nums, 0, 0, 0);
+    return splitArray(nums, 0, 0, 0);
   }
+
+  public static boolean splitOdd10(int[] nums, int start, int sum1, int sum2) {
+    if (start < nums.length){
+      return (splitOdd10(nums, start+1, sum1 + nums[start], sum2) || splitOdd10(nums, start+1, sum1, sum2 + nums[start]));
+    }
+    return ((sum1 % 10 == 0 && sum2 % 2 == 1) ||(sum2 % 10 == 0 && sum1 % 2 == 1));
+  }
+
+  public static boolean splitOdd10(int[] nums) {
+    return splitOdd10(nums, 0, 0, 0);
+  }
+
+
+
 
 
   public static void main(String[] args){
