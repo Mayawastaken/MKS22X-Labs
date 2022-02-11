@@ -72,11 +72,18 @@ public class RecursionForReal{
       return (groupSumClump(start+i, nums, target - i * nums[start]) || groupSumClump(start+i, nums, target));
     }
     return (target == 0);
-  } //NO FULL WORK
+  }
 
-  // public static boolean split53(int[] nums) {
-  //
-  // }
+  public static boolean wantedSplitArray(int[] nums, int start, int sum1, int sum2){
+    if (start < nums.length){
+      return (wantedSplitArray(nums, start+1, sum1 + nums[start], sum2) || wantedSplitArray(nums, start+1, sum1, sum2 + nums[start]));
+    }
+    return (sum1 == sum2);
+  }
+
+  public static boolean splitArray(int[] nums) {
+    return wantedSplitArray(nums, 0, 0, 0);
+  }
 
 
   public static void main(String[] args){
