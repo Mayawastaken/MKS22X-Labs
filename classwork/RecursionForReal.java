@@ -51,6 +51,17 @@ public class RecursionForReal{
     return (target == 0);
   }
 
+  public boolean groupNoAdj(int start, int[] nums, int target) {
+    if (start < nums.length && target != 0){
+      return (groupNoAdj(start+2, nums, target - nums[start]) || groupNoAdj(start+1, nums, target));
+    }
+    return (target == 0);
+  }
+
+  // public static boolean split53(int[] nums) {
+  //
+  // }
+
 
   public static void main(String[] args){
     int[] test1 = {2,4,8};
