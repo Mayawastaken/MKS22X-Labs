@@ -81,19 +81,39 @@ public class RecursionForReal{
     return (sum1 == sum2);
   }
 
-  public static boolean splitArray(int[] nums) {
+  public static boolean splitArray(int[] nums){
     return splitArray(nums, 0, 0, 0);
   }
 
-  public static boolean splitOdd10(int[] nums, int start, int sum1, int sum2) {
+  public static boolean splitOdd10(int[] nums, int start, int sum1, int sum2){
     if (start < nums.length){
       return (splitOdd10(nums, start+1, sum1 + nums[start], sum2) || splitOdd10(nums, start+1, sum1, sum2 + nums[start]));
     }
     return ((sum1 % 10 == 0 && sum2 % 2 == 1) ||(sum2 % 10 == 0 && sum1 % 2 == 1));
   }
 
-  public static boolean splitOdd10(int[] nums) {
+  public static boolean splitOdd10(int[] nums){
     return splitOdd10(nums, 0, 0, 0);
+  }
+
+
+  public static boolean split53(int[] nums, int start, int sum1, int sum2){
+    if (start < nums.length){
+      if (nums[start] % 5 == 0){
+        return (split53(nums, start+1, sum1 + nums[start], sum2));
+      }
+      else if (nums[start] % 3 == 0){
+        return (split53(nums, start+1, sum1, sum2 + nums[start]));
+      }
+      else{
+        return (split53(nums, start+1, sum1 + nums[start], sum2) || split53(nums, start+1, sum1, sum2 + nums[start]));
+      }
+    }
+    return (sum1 == sum2);
+  }
+
+  public static boolean split53(int[] nums){
+    return split53(nums, 0, 0, 0);
   }
 
 
