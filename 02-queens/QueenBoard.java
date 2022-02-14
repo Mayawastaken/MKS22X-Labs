@@ -50,7 +50,26 @@ public class QueenBoard{
   *@postcondition the board is only changed when the function returns true
   * in which case the queen is added and all it's threatened positions are incremented
   */
+
+  //NOTE I CLD WRITE SMTH THAT CLD DO BOTH ADD N REMOVE N CALL IT LATER
   private boolean addQueen(int r, int c){
+    if (board[r][c] != 0){
+      return false;
+    }
+    else{
+      board[r][c] = -1;
+      int inc = 0;
+      for (int newr = r; newr < board.length; newr++){
+        board[newr][c] += 1;
+        if (Math.abs(c + inc) < smth && -  yuh) //FIX LOL BASICALLY NO OOB
+        board[newr][c + inc] += 1;
+        board[newr][c - inc] += 1;
+        inc++
+        //but like there r out of bounds
+      }
+
+      // then do downward, down diag,
+    }
     return true;
   }
 
