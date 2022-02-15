@@ -1,3 +1,4 @@
+import java.util.*;
 public class QueenBoard{
   private int[][] board;
 
@@ -58,17 +59,17 @@ public class QueenBoard{
     }
     else{
       board[r][c] = -1;
-      int inc = 0;
+      int inc = 1; //what's ot supposed to be
       for (int newr = r; newr < board.length; newr++){
-        board[newr][c] += 1;
-        if (Math.abs(c + inc) < smth && -  yuh) //FIX LOL BASICALLY NO OOB
         board[newr][c + inc] += 1;
-        board[newr][c - inc] += 1;
-        inc++
-        //but like there r out of bounds
+        if (c + inc < board.length){
+          board[newr][c + inc] += 1;
+        }
+        if (c - inc >= 0){
+          board[newr][c - inc] += 1;
+        }
+        inc++;
       }
-
-      // then do downward, down diag,
     }
     return true;
   }
@@ -79,7 +80,22 @@ public class QueenBoard{
   *threatened positions are decremented
   */
   private void removeQueen(int r, int c){
-
+    if (board[r][c] != 0){
+    }
+    else{
+      board[r][c] = 0; //hmm
+      int inc = 1;
+      for (int newr = r; newr < board.length; newr++){
+        board[newr][c + inc] -= 1;
+        if (c + inc < board.length){
+          board[newr][c + inc] -= 1;
+        }
+        if (c - inc >= 0){
+          board[newr][c - inc] -= 1;
+        }
+        inc++;
+      }
+    }
   }
 
 
@@ -92,8 +108,27 @@ public class QueenBoard{
   *        returns true when the board is solveable, and leaves the board in a solved state
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
+
+  public boolean solve(int row){
+    if (row >= board.length){
+      return true;
+    }
+    else{
+      for (int col = 0; col < board[row].length; col++){
+        if (addQueen(row, col)){
+          if (solve(row++)){
+            return true;
+          }
+          removeQueen(row, col);
+        }
+      }
+      return false;
+    }
+  }
+
+
   public boolean solve(){
-    return true;
+    return solve(0);
   }
 
 
@@ -111,6 +146,8 @@ public class QueenBoard{
   public static void main(String[] args){
     QueenBoard hi = new QueenBoard(8);
     System.out.println(hi);
-
+    //System.out.println(hi.solve());
+    System.out.println(hi.addQueen(1,1));
+    System.out.println(hi);
   }
 }
