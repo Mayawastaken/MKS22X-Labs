@@ -59,9 +59,9 @@ public class QueenBoard{
     }
     else{
       board[r][c] = -1;
-      int inc = 1; //what's ot supposed to be
-      for (int newr = r; newr < board.length; newr++){
-        board[newr][c + inc] += 1;
+      int inc = 1;
+      for (int newr = r + 1; newr < board.length; newr++){
+        board[newr][c] += 1;
         if (c + inc < board.length){
           board[newr][c + inc] += 1;
         }
@@ -80,13 +80,13 @@ public class QueenBoard{
   *threatened positions are decremented
   */
   private void removeQueen(int r, int c){
-    if (board[r][c] != 0){
+    if (board[r][c] != -1){
     }
     else{
-      board[r][c] = 0; //hmm
+      board[r][c] = 0;
       int inc = 1;
-      for (int newr = r; newr < board.length; newr++){
-        board[newr][c + inc] -= 1;
+      for (int newr = r + 1; newr < board.length; newr++){
+        board[newr][c] -= 1;
         if (c + inc < board.length){
           board[newr][c + inc] -= 1;
         }
@@ -116,7 +116,7 @@ public class QueenBoard{
     else{
       for (int col = 0; col < board[row].length; col++){
         if (addQueen(row, col)){
-          if (solve(row++)){
+          if (solve(row + 1)){
             return true;
           }
           removeQueen(row, col);
@@ -140,14 +140,43 @@ public class QueenBoard{
     return 0;
   }
 
+  public String debug(){
+    String s = "";
+    for (int i = 0; i < board.length; i++){
+      s += Arrays.toString(board[i]) + "\n";
+    }
+    return s;
+  }
+
 
   //---------------
 
   public static void main(String[] args){
     QueenBoard hi = new QueenBoard(8);
     System.out.println(hi);
-    //System.out.println(hi.solve());
-    System.out.println(hi.addQueen(1,1));
+    System.out.println(hi.debug());
+    System.out.println(hi.solve());
+    System.out.println(hi.debug());
     System.out.println(hi);
+
+    QueenBoard hi4 = new QueenBoard(4);
+    System.out.println(hi4);
+    System.out.println(hi4.solve());
+    System.out.println(hi4.debug());
+    System.out.println(hi4);
+
+    // System.out.println(hi.addQueen(1,1));
+    // System.out.println(hi.debug());
+    // System.out.println(hi);
+    // // System.out.println(hi.addQueen(3,2));
+    // // System.out.println(hi.debug());
+    // // System.out.println(hi.addQueen(2,1));
+    // // System.out.println(hi.debug());
+    // // System.out.println(hi);
+    //
+    // System.out.println("");
+    // hi.removeQueen(1,1);
+    // System.out.println(hi.debug());
+    // System.out.println(hi);
   }
 }
