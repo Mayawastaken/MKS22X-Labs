@@ -109,7 +109,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
 
-  public boolean solve(int row){
+  public boolean solve(int row){ //throws IllegalStateException YAAA
     if (row >= board.length){
       return true;
     }
@@ -136,6 +136,11 @@ public class QueenBoard{
   *@return the number of solutions found, and leaves the board filled with only 0's
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
+
+  public int countSolutions(int row){
+
+  }
+
   public int countSolutions(){
     return 0;
   }
