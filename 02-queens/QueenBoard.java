@@ -83,6 +83,7 @@ public class QueenBoard{
     if (board[r][c] != -1){
     }
     else{
+      // System.out.println("removing Queen from " + r + ", " + c);
       board[r][c] = 0;
       int inc = 1;
       for (int newr = r + 1; newr < board.length; newr++){
@@ -109,12 +110,23 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you solved a 2nd time.)
   */
 
-  public boolean solve(int row){ //throws IllegalStateException YAAA
+  public boolean solve(int row) throws IllegalStateException{ //throws IllegalStateException YAAA
+    if (row == 0){
+      for (int i = 0; i < board.length; i++){
+        for (int j = 0; j < board[i].length; j++){
+          if (board[i][j] != 0){
+            throw new IllegalStateException("Not all 0s on board when trying to solve");
+          }
+        }
+      }
+    }
     if (row >= board.length){
+      // System.out.println("Solution FOUND");
       return true;
     }
     else{
       for (int col = 0; col < board[row].length; col++){
+        // System.out.println("testing addQueen at " + row + ", " + col);
         if (addQueen(row, col)){
           if (solve(row + 1)){
             return true;
@@ -137,13 +149,38 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value (e.g. you ran solve() before this method)
   */
 
-  public int countSolutions(int row){
 
+  public int countSolutions(int row) throws IllegalStateException{ //throws IllegalStateException YAAA
+    if (row == 0){
+      for (int i = 0; i < board.length; i++){
+        for (int j = 0; j < board[i].length; j++){
+          if (board[i][j] != 0){
+            throw new IllegalStateException("Not all 0s on board when trying to solve");
+          }
+        }
+      int numSoln = 0;
+      }
+    }
+    int counter = 0;
+    if (row >= board.length){
+      counter++;
+    }
+    else {
+      for (int col = 0; col < board[row].length; col++){
+        if (addQueen(row, col)){
+          counter += countSolutions(row + 1);
+          removeQueen(row, col);
+        }
+      }
+    }
+    return counter;
   }
+
 
   public int countSolutions(){
-    return 0;
+    return countSolutions(0);
   }
+
 
   public String debug(){
     String s = "";
@@ -163,12 +200,36 @@ public class QueenBoard{
     System.out.println(hi.solve());
     System.out.println(hi.debug());
     System.out.println(hi);
-
+    System.out.println(" ");
     QueenBoard hi4 = new QueenBoard(4);
     System.out.println(hi4);
     System.out.println(hi4.solve());
     System.out.println(hi4.debug());
     System.out.println(hi4);
+    QueenBoard hi2 = new QueenBoard(2);
+    System.out.println(hi2);
+    System.out.println(hi2.solve());
+    System.out.println(hi2.debug());
+    System.out.println(hi2);
+    System.out.println(" ");
+    System.out.println(" ");
+    QueenBoard hi1new = new QueenBoard(1);
+    System.out.println(hi1new.countSolutions());
+    QueenBoard hi2new = new QueenBoard(2);
+    System.out.println(hi2new.countSolutions());
+    QueenBoard hi3new = new QueenBoard(3);
+    System.out.println(hi3new.countSolutions());
+    QueenBoard hi4new = new QueenBoard(4);
+    System.out.println(hi4new.countSolutions());
+    QueenBoard hi5new = new QueenBoard(5);
+    System.out.println(hi5new.countSolutions());
+    QueenBoard hi6new = new QueenBoard(6);
+    System.out.println(hi6new.countSolutions());
+    QueenBoard hi7new = new QueenBoard(7);
+    System.out.println(hi7new.countSolutions());
+    QueenBoard hi8new = new QueenBoard(8);
+    System.out.println(hi8new.countSolutions());
+
 
     // System.out.println(hi.addQueen(1,1));
     // System.out.println(hi.debug());
