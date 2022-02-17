@@ -158,7 +158,6 @@ public class QueenBoard{
             throw new IllegalStateException("Not all 0s on board when trying to solve");
           }
         }
-      int numSoln = 0;
       }
     }
     int counter = 0;
