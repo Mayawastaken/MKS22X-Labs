@@ -1,13 +1,31 @@
 import java.util.*;
 public class QueenBoard{
   private int[][] board;
+  private boolean animated;
+  private int delay;
+
 
   public QueenBoard(int size){
+    delay = 1000;
+    animated = false;
     board = new int[size][size];
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length; j++){
         board[i][j] = 0;
       }
+    }
+  }
+
+  public void setAnimate(boolean newValue){
+    animated = newValue;
+  }
+
+  public void setDelay(int newValue){
+    if (newValue < 0){
+      delay = 0;
+    }
+    else{
+      delay = newValue;
     }
   }
 
@@ -128,10 +146,20 @@ public class QueenBoard{
       for (int col = 0; col < board[row].length; col++){
         // System.out.println("testing addQueen at " + row + ", " + col);
         if (addQueen(row, col)){
+          if(animated){ // HMMMM
+            System.out.println(Text.go(1,1));
+            System.out.println(this);//can modify here
+            Text.wait(delay);
+          }
           if (solve(row + 1)){
             return true;
           }
           removeQueen(row, col);
+          if(animated){
+            System.out.println(Text.go(1,1));
+            System.out.println(this);//can modify here
+            Text.wait(delay);
+          }
         }
       }
       return false;
@@ -193,55 +221,63 @@ public class QueenBoard{
   //---------------
 
   public static void main(String[] args){
-    QueenBoard hi = new QueenBoard(8);
-    System.out.println(hi);
-    System.out.println(hi.debug());
-    System.out.println(hi.solve());
-    System.out.println(hi.debug());
-    System.out.println(hi);
-    System.out.println(" ");
-    QueenBoard hi4 = new QueenBoard(4);
-    System.out.println(hi4);
-    System.out.println(hi4.solve());
-    System.out.println(hi4.debug());
-    System.out.println(hi4);
-    QueenBoard hi2 = new QueenBoard(2);
-    System.out.println(hi2);
-    System.out.println(hi2.solve());
-    System.out.println(hi2.debug());
-    System.out.println(hi2);
-    System.out.println(" ");
-    System.out.println(" ");
-    QueenBoard hi1new = new QueenBoard(1);
-    System.out.println(hi1new.countSolutions());
-    QueenBoard hi2new = new QueenBoard(2);
-    System.out.println(hi2new.countSolutions());
-    QueenBoard hi3new = new QueenBoard(3);
-    System.out.println(hi3new.countSolutions());
-    QueenBoard hi4new = new QueenBoard(4);
-    System.out.println(hi4new.countSolutions());
-    QueenBoard hi5new = new QueenBoard(5);
-    System.out.println(hi5new.countSolutions());
-    QueenBoard hi6new = new QueenBoard(6);
-    System.out.println(hi6new.countSolutions());
-    QueenBoard hi7new = new QueenBoard(7);
-    System.out.println(hi7new.countSolutions());
-    QueenBoard hi8new = new QueenBoard(8);
-    System.out.println(hi8new.countSolutions());
-
-
-    // System.out.println(hi.addQueen(1,1));
-    // System.out.println(hi.debug());
-    // System.out.println(hi);
-    // // System.out.println(hi.addQueen(3,2));
-    // // System.out.println(hi.debug());
-    // // System.out.println(hi.addQueen(2,1));
-    // // System.out.println(hi.debug());
-    // // System.out.println(hi);
+    int SIZE = 8;
+    if(args.length > 0){
+      SIZE = Integer.parseInt(args[0]);
+    }
+    QueenBoard b = new QueenBoard(SIZE);
+    if(args.length > 1){
+      b.setAnimate(true);
+      b.setDelay(Integer.parseInt(args[1]));
+    }
+    System.out.println(Text.CLEAR_SCREEN);
+    System.out.println(Text.HIDE_CURSOR);
+    System.out.println(Text.go(1,1));
+    b.solve();
+    System.out.println(Text.RESET);
+    System.out.println(Text.go(1,1));
+    System.out.println(b);
     //
-    // System.out.println("");
-    // hi.removeQueen(1,1);
+    // QueenBoard hi = new QueenBoard(8);
+    // System.out.println(hi);
+    // System.out.println(hi.debug());
+    // System.out.println(hi.solve());
     // System.out.println(hi.debug());
     // System.out.println(hi);
+    // System.out.println(" ");
+    // QueenBoard hi4 = new QueenBoard(4);
+    // System.out.println(hi4);
+    // System.out.println(hi4.solve());
+    // System.out.println(hi4.debug());
+    // System.out.println(hi4);
+    // QueenBoard hi2 = new QueenBoard(2);
+    // System.out.println(hi2);
+    // System.out.println(hi2.solve());
+    // System.out.println(hi2.debug());
+    // System.out.println(hi2);
+    // System.out.println(" ");
+    // System.out.println(" ");
+    // QueenBoard hi1new = new QueenBoard(1);
+    // System.out.println(hi1new.countSolutions());
+    // QueenBoard hi2new = new QueenBoard(2);
+    // System.out.println(hi2new.countSolutions());
+    // QueenBoard hi3new = new QueenBoard(3);
+    // System.out.println(hi3new.countSolutions());
+    // QueenBoard hi4new = new QueenBoard(4);
+    // System.out.println(hi4new.countSolutions());
+    // QueenBoard hi5new = new QueenBoard(5);
+    // System.out.println(hi5new.countSolutions());
+    // QueenBoard hi6new = new QueenBoard(6);
+    // System.out.println(hi6new.countSolutions());
+    // QueenBoard hi7new = new QueenBoard(7);
+    // System.out.println(hi7new.countSolutions());
+    // QueenBoard hi8new = new QueenBoard(8);
+    // System.out.println(hi8new.countSolutions());
+    //
+    // System.out.println(Text.CLEAR_SCREEN);
+    // System.out.println(Text.HIDE_CURSOR);
+    // System.out.println(Text.go(1,1));
+    // //call your solve
+    // System.out.println(Text.RESET);
   }
 }
