@@ -19,6 +19,9 @@ public class MazeTry{
         }
       }
       input.close();
+      if (lines > 0){
+        maze = maze.substring(0, maze.length()-1);
+      }
     } catch (FileNotFoundException e) {
       //yo wrong filename
     }
