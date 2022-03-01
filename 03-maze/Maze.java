@@ -45,7 +45,7 @@ public class Maze{
       maze = new char[rows][cols];
       int place = 0;
       for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){ // <= bcs of /n we want it to go to the end bcs itll never acc add when j = cols
+        for (int j = 0; j < cols; j++){ 
           if (mazey.charAt(place) != '\n'){
             maze[i][j] = mazey.charAt(place);
           }
