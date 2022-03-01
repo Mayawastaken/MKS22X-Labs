@@ -22,21 +22,38 @@ public class Maze{
   */
   public Maze(String filename) throws FileNotFoundException{
     animate = false;
-    String maze = "";
-    try{
+    String mazey = "";
+    try{ //i dont need to try? LOL i mean like try keword n catch, instead it j knows it might need to throw
       File file = new File(filename);
       Scanner input = new Scanner(file);
-      int lines = 0;
+      int rows = 0;
       while (input.hasNextLine()){
         String line = input.nextLine();
         if (!line.equals("")){
-          maze += line + "\n"; //but not on the last one yk
-          lines++;
+          mazey += line + "\n"; //but not on the last one yk
+          rows++;
         }
       }
       input.close();
-      if (lines > 0){
-        maze = maze.substring(0, maze.length()-1);
+      if (rows > 0){
+        mazey = mazey.substring(0, mazey.length()-1);
+      }
+      int cols = 0;
+      while (mazey.charAt(cols) != '\n'){
+        cols++;
+      }
+      maze = new char[rows][cols];
+      int place = 0;
+      for (int i = 0; i < rows; i++){
+        for (int j = 0; j < cols; j++){ // <= bcs of /n we want it to go to the end bcs itll never acc add when j = cols
+          if (mazey.charAt(place) != '\n'){
+            maze[i][j] = mazey.charAt(place);
+          }
+          else{
+            j--;
+          }
+          place++;
+        }
       }
     } catch (FileNotFoundException e) {
       //yo wrong filename
@@ -68,7 +85,16 @@ public class Maze{
   It should look like the text file with some characters replaced.
   */
   public String toString(){
-    return "WRITE THIS METHOD";
+    String showMaze = "";
+    for (int i = 0; i < maze.length; i++){
+      for (int j = 0; j < maze[i].length; j++){
+        showMaze += maze[i][j];
+      }
+      if (i < maze.length - 1){
+        showMaze += "\n";
+      }
+    }
+    return showMaze;
   }
 
   /*Wrapper Solve Function returns the helper function
@@ -109,5 +135,14 @@ public class Maze{
 
     //COMPLETE SOLVE
     return -1; //so it compiles
+  }
+
+  public static void main(String[] args){
+    try{
+      Maze test1 = new Maze("MazeA.txt");
+      System.out.println(test1.toString());
+    } catch (FileNotFoundException e) {
+
+    }
   }
 }
