@@ -45,7 +45,11 @@ public class Maze{
       maze = new char[rows][cols];
       int place = 0;
       for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){ 
+        for (int j = 0; j < cols; j++){
+          if (mazey.charAt(place) == 'S'){
+            startRow = i;
+            startCol = j;
+          }
           if (mazey.charAt(place) != '\n'){
             maze[i][j] = mazey.charAt(place);
           }
@@ -99,7 +103,7 @@ public class Maze{
 
   /*Wrapper Solve Function returns the helper function
   Note the helper function has the same name, but different parameters.
-  Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
+  We can assume S/E exists.
   */
   public int solve(){
     //only clear the terminal if you are running animation
@@ -127,20 +131,51 @@ public class Maze{
   */
   private int solve(int row, int col){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
-    if(animate){
+    if(animate){ // put in spots 1 and 2 yk (?)
       gotoTop();
       System.out.println(this);
       wait(50);
     }
-
-    //COMPLETE SOLVE
+    if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.'){
+      return -1;
+    }
+    else if (maze[row][col] == 'E'){
+      return 0;
+    }
+    else{
+      maze[row][col] = '@';
+      int South = solve(row + 1, col);
+      if (South != -1){
+        return South + 1;
+      }
+      int North = solve (row - 1, row);
+      if (North != -1){
+        return North + 1;
+      }
+      //etc
+    }
     return -1; //so it compiles
   }
 
   public static void main(String[] args){
     try{
-      Maze test1 = new Maze("MazeA.txt");
-      System.out.println(test1.toString());
+      // Maze test1 = new Maze("MazeA.txt");
+      // System.out.println(test1.toString());
+      Maze test2 = new Maze("maze1");
+      System.out.println(test2.toString());
+      System.out.println(" ");
+      Maze test3 = new Maze("maze2");
+      System.out.println(test3.toString());
+      System.out.println(" ");
+      Maze test4 = new Maze("maze3");
+      System.out.println(" ");
+      System.out.println(test4.toString());
+      Maze test5 = new Maze("maze4");
+      System.out.println(" ");
+      System.out.println(test5.toString());
+      Maze test6 = new Maze("maze5");
+      System.out.println(" ");
+      System.out.println(test6.toString());
     } catch (FileNotFoundException e) {
 
     }
