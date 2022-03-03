@@ -131,11 +131,6 @@ public class Maze{
   */
   private int solve(int row, int col){ //you can add more parameters since this is private
     //automatic animation! You are welcome.
-    if(animate){ // put in spots 1 and 2 yk (?)
-      gotoTop();
-      System.out.println(this);
-      wait(50);
-    }
     if (maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.'){
       return -1;
     }
@@ -144,17 +139,35 @@ public class Maze{
     }
     else{
       maze[row][col] = '@';
-      int South = solve(row + 1, col);
-      if (South != -1){
-        return South + 1;
+      if(animate){ // put in spots 1 and 2 yk (?)
+        gotoTop();
+        System.out.println(this);
+        wait(50);
       }
-      int North = solve (row - 1, row);
+      int North = solve(row - 1, col);
       if (North != -1){
         return North + 1;
       }
-      //etc
+      int South = solve (row + 1, col);
+      if (South != -1){
+        return South + 1;
+      }
+      int East = solve (row, col + 1);
+      if (East != -1){
+        return East + 1;
+      }
+      int West = solve (row, col - 1);
+      if (West != -1){
+        return West + 1;
+      }
+      maze[row][col] = '.';
+      if(animate){ // put in spots 1 and 2 yk (?)
+        gotoTop();
+        System.out.println(this);
+        wait(50);
+      }
+      return -1;
     }
-    return -1; //so it compiles
   }
 
   public static void main(String[] args){
