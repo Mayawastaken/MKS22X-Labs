@@ -8,5 +8,5 @@ public class MazeGenerator{
       //then make it a space, cont with algorithm / random
       //backtracking is when there are >2 ways in to all 3 adjacent directions, then u go back a square n try again from there
     }
-  }
+  } //yooo wait i can make a 2d char array of ints to count ways in and out like Queens LOL and since theres a border, no worries ab adding/subtracting from borders and no oob errors 
 }
