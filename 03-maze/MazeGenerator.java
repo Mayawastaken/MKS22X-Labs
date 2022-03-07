@@ -22,7 +22,7 @@ public class MazeGenerator{
     return rc;
   }
 
-  public static void generate(char[][]maze, int startrow, int startcol){
+  public static void generateHelper(char[][]maze, int startrow, int startcol){
     String dir = "1234";
     Random r = new Random();
     //https://weblog.jamisbuck.org/2011/2/7/maze-generation-algorithm-recap
@@ -48,14 +48,14 @@ public class MazeGenerator{
         int firstDir = Integer.parseInt(dir.charAt(dir1) + "");
         dir = dir.replace(dir.charAt(dir1) + "", "");
         int[] rc =  newRCarray(startrow, startcol, firstDir);
-        generate(maze, rc[0], rc[1]);
+        generateHelper(maze, rc[0], rc[1]);
         //System.out.println(firstDir);
 
         int dir2 = r.nextInt(3);
         int secondDir = Integer.parseInt(dir.charAt(dir2) + "");
         dir = dir.replace(dir.charAt(dir2) + "", "");
         rc =  newRCarray(startrow, startcol, secondDir);
-        generate(maze, rc[0], rc[1]);
+        generateHelper(maze, rc[0], rc[1]);
         //System.out.println(secondDir);
 
 
@@ -63,25 +63,74 @@ public class MazeGenerator{
         int thirdDir = Integer.parseInt(dir.charAt(dir3) + "");
         dir = dir.replace(dir.charAt(dir3) + "", "");
         rc =  newRCarray(startrow, startcol, thirdDir);
-        generate(maze, rc[0], rc[1]);
+        generateHelper(maze, rc[0], rc[1]);
         //System.out.println(thirdDir);
 
 
         int fourthDir = Integer.parseInt(dir);
         rc =  newRCarray(startrow, startcol, fourthDir);
-        generate(maze, rc[0], rc[1]);
+        generateHelper(maze, rc[0], rc[1]);
         //System.out.println(fourthDir); random 4 dir work confirmed
       }
     }
-  } //yooo wait i can make a 2d char array of ints to count ways in and out like Queens LOL and since theres a border, no worries ab adding/subtracting from borders and no oob errors
+  }
 
-  public static void main(String[] args){
-    char[][] maze1 = new char[12][10];
-    for (int i = 0; i < maze1.length; i++){
-      for (int j = 0; j < maze1[0].length; j++){
-        maze1[i][j] = '#';
+
+  public static void generate(char[][]maze, int startrow, int startcol){
+    generateHelper(maze, startrow, startcol);
+    maze[startrow][startcol] = 'S';
+    int rowE, colE, incrementRow, incrementCol;
+    if (Math.abs((maze.length - 2)  - startrow) <= Math.abs(startrow - 1)){
+      rowE = 1;
+      incrementRow = 1;
+    }
+    else{
+      rowE = maze.length - 2;
+      incrementRow = -1;
+    }
+    if (Math.abs((maze[0].length - 2)  - startcol) <= Math.abs(startcol - 1)){
+      colE = 1;
+      incrementCol = 1;
+    }
+    else{
+      colE = maze[0].length - 2;
+      incrementCol = -1;
+    }
+    if (maze[rowE][colE] == ' '){
+      maze[rowE][colE] = 'E';
+    }
+    else{
+      nestedloop:
+      for (int i = rowE; i < maze.length - 1 && i > 0; i += incrementRow){
+        for (int j = colE; j < maze[0].length - 1 && j > 0; j += incrementCol){
+          if (maze[i][j] == ' '){
+            maze[i][j] = 'E';
+            break nestedloop;
+          }
+        }
       }
     }
-    generate(maze1, 1, 1);
+  }
+
+
+  public static void main(String[] args){
+    // char[][] maze1 = new char[12][10];
+    // for (int i = 0; i < maze1.length; i++){
+    //   for (int j = 0; j < maze1[0].length; j++){
+    //     maze1[i][j] = '#';
+    //   }
+    // }
+    //
+    // generate(maze1, 3, 3);
+    // String showMaze1 = "";
+    // for (int i = 0; i < maze1.length; i++){
+    //   for (int j = 0; j < maze1[i].length; j++){
+    //     showMaze1 += maze1[i][j];
+    //   }
+    //   if (i < maze1.length - 1){
+    //     showMaze1 += "\n";
+    //   }
+    // }
+    // System.out.println(showMaze1);
   }
 }
