@@ -20,8 +20,13 @@ public class Bronze{
     return stomped;
   }
 
+  public static int[] create(){
+    //basically use instructions, solve -- solve will j combine all funcs
+    return (new int[]{0});
+  }
 
-  public static long solve(String filename){
+
+  public static long solve(String filename){ // read it then use other helpers
     return 0l;
   }
 
