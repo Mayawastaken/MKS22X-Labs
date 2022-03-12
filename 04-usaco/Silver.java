@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.*;
 public class Silver{
 
-  public static int[][] charToInt(char[][] field){
-    int[][] numOfWays = new int[field.length][field[0].length];
-    for (int i = 0; i < numOfWays.length; i++){
-      for (int j = 0; j < numOfWays[0].length; j++){
-        if (field[i][j] == '.'){
+  public static int[][] charToIntBuffer(char[][] field){
+    int[][] numOfWays = new int[field.length + 2][field[0].length + 2];
+    for (int i = 1; i < numOfWays.length-1; i++){
+      for (int j = 1; j < numOfWays[0].length-1; j++){
+        if (field[i-1][j-1] == '.'){
           numOfWays[i][j] = 0;
         }
         else{
@@ -18,7 +18,32 @@ public class Silver{
   }
 
   public static int[][] newTime(int[][] timeMinusOne){
-    return (new int[][]{{}});
+    int[][] updatedNum = new int[timeMinusOne.length][timeMinusOne[0].length];
+    int newWays = 0;
+    for (int i = 0; i < timeMinusOne.length; i++){
+      for (int j = 0; j < timeMinusOne[0].length; j++){
+        if (timeMinusOne[i][j] != -1){
+          if (timeMinusOne[i+1][j] != -1){
+            newWays += timeMinusOne[i+1][j];
+          }
+          if (timeMinusOne[i-1][j] != -1){
+            newWays += timeMinusOne[i-1][j];
+          }
+          if (timeMinusOne[i][j+1] != -1){
+            newWays += timeMinusOne[i][j+1];
+          }
+          if (timeMinusOne[i][j-1] != -1){
+            newWays += timeMinusOne[i][j-1];
+          }
+          updatedNum[i][j] = newWays;
+          newWays = 0;
+        }
+        else{
+          updatedNum[i][j] = -1;
+        }
+      }
+    }
+    return updatedNum;
   }
 
 
