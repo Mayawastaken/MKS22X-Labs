@@ -2,24 +2,25 @@ import java.io.*;
 import java.util.*;
 public class Silver{
 
-  public static int[][] charToIntBuffer(char[][] field){
-    int[][] numOfWays = new int[field.length + 2][field[0].length + 2];
+  public static long[][] charToLongBuffer(char[][] field, int startRow, int startCol){
+    long[][] numOfWays = new long[field.length + 2][field[0].length + 2];
     for (int i = 1; i < numOfWays.length-1; i++){
       for (int j = 1; j < numOfWays[0].length-1; j++){
         if (field[i-1][j-1] == '.'){
-          numOfWays[i][j] = 0;
+          numOfWays[i][j] = 0l;
         }
         else{
-          numOfWays[i][j] = -1;
+          numOfWays[i][j] = -1l;
         }
       }
     }
+    numOfWays[startRow][startCol] = 1l; //THIS MEANS WE WANT t-1 SECONDS OF ITERATION OF newTime !!
     return numOfWays;
   }
 
-  public static int[][] newTime(int[][] timeMinusOne){
-    int[][] updatedNum = new int[timeMinusOne.length][timeMinusOne[0].length];
-    int newWays = 0;
+  public static long[][] newTime(long[][] timeMinusOne){
+    long[][] updatedNum = new long[timeMinusOne.length][timeMinusOne[0].length];
+    long newWays = 0l;
     for (int i = 0; i < timeMinusOne.length; i++){
       for (int j = 0; j < timeMinusOne[0].length; j++){
         if (timeMinusOne[i][j] != -1){
@@ -36,10 +37,10 @@ public class Silver{
             newWays += timeMinusOne[i][j-1];
           }
           updatedNum[i][j] = newWays;
-          newWays = 0;
+          newWays = 0l;
         }
         else{
-          updatedNum[i][j] = -1;
+          updatedNum[i][j] = -1l;
         }
       }
     }
@@ -64,6 +65,12 @@ public class Silver{
     int startCol = in.nextInt();
     int endRow = in.nextInt();
     int endCol = in.nextInt();
-
+    long[][] goodField = charToLongBuffer(field, startRow, startCol);
+    int timer = 1; //bcs we alr added a 1 on ogField meaning 1 sec has passed
+    while (timer < seconds){
+      goodField = newTime(goodField);
+      timer++;
+    }
+    return goodField[endRow][endCol];
   }
 }
