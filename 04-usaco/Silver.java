@@ -2,6 +2,24 @@ import java.io.*;
 import java.util.*;
 public class Silver{
 
+  public static int[][] charToInt(char[][] field){
+    int[][] numOfWays = new int[field.length][field[0].length];
+    for (int i = 0; i < numOfWays.length; i++){
+      for (int j = 0; j < numOfWays[0].length; j++){
+        if (field[i][j] == '.'){
+          numOfWays[i][j] = 0;
+        }
+        else{
+          numOfWays[i][j] = -1;
+        }
+      }
+    }
+    return numOfWays;
+  }
+
+  public static int[][] newTime(int[][] timeMinusOne){
+    return (new int[][]{{}});
+  }
 
 
 
@@ -21,6 +39,6 @@ public class Silver{
     int startCol = in.nextInt();
     int endRow = in.nextInt();
     int endCol = in.nextInt();
-    
+
   }
 }
