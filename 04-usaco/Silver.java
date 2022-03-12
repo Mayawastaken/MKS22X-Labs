@@ -53,16 +53,25 @@ public class Silver{
     File f = new File(filename);
     Scanner in = new Scanner(f);
     int row = in.nextInt();
+    // System.out.println(row);
     int col = in.nextInt();
+    // System.out.println(col);
     char[][] field = new char[row][col];
     int seconds = in.nextInt();
-    String line = "";
-    for (int i = 0; i < row; i++){
-      line = in.nextLine();
-      for (int j = 0; j < col; j++){
-        field[i][j] = line.charAt(j);
-      }
+    // System.out.println(seconds);
+    for (int i = 0; i < field.length; i++){
+      String line = in.next();
+      field[i] = line.toCharArray();
     }
+    // System.out.println("FIELD IS \n");
+    // for (int i = 0; i <  field.length; i++){
+    //   for (int j = 0; j <  field[0].length; j++){
+    //     System.out.print(" " + field[i][j] + " ");
+    //     if (j == col - 1){
+    //       System.out.println("");
+    //     }
+    //   }
+    // }
     int startRow = in.nextInt();
     int startCol = in.nextInt();
     int endRow = in.nextInt();
