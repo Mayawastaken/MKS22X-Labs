@@ -14,7 +14,7 @@ public class Silver{
         }
       }
     }
-    numOfWays[startRow][startCol] = 1l; //THIS MEANS WE WANT t-1 SECONDS OF ITERATION OF newTime !!
+    numOfWays[startRow][startCol] = 1l;
     return numOfWays;
   }
 
@@ -23,7 +23,8 @@ public class Silver{
     long newWays = 0l;
     for (int i = 0; i < timeMinusOne.length; i++){
       for (int j = 0; j < timeMinusOne[0].length; j++){
-        if (timeMinusOne[i][j] != -1){
+        if (timeMinusOne[i][j] != -1 && i != 0 && i != timeMinusOne.length - 1 && j != 0 && j != timeMinusOne[0].length - 1){
+          //basically not border or tree
           if (timeMinusOne[i+1][j] != -1){
             newWays += timeMinusOne[i+1][j];
           }
@@ -53,31 +54,19 @@ public class Silver{
     File f = new File(filename);
     Scanner in = new Scanner(f);
     int row = in.nextInt();
-    // System.out.println(row);
     int col = in.nextInt();
-    // System.out.println(col);
     char[][] field = new char[row][col];
     int seconds = in.nextInt();
-    // System.out.println(seconds);
     for (int i = 0; i < field.length; i++){
       String line = in.next();
       field[i] = line.toCharArray();
     }
-    // System.out.println("FIELD IS \n");
-    // for (int i = 0; i <  field.length; i++){
-    //   for (int j = 0; j <  field[0].length; j++){
-    //     System.out.print(" " + field[i][j] + " ");
-    //     if (j == col - 1){
-    //       System.out.println("");
-    //     }
-    //   }
-    // }
     int startRow = in.nextInt();
     int startCol = in.nextInt();
     int endRow = in.nextInt();
     int endCol = in.nextInt();
     long[][] goodField = charToLongBuffer(field, startRow, startCol);
-    int timer = 1; //bcs we alr added a 1 on ogField meaning 1 sec has passed
+    int timer = 0;
     while (timer < seconds){
       goodField = newTime(goodField);
       timer++;
@@ -87,5 +76,6 @@ public class Silver{
 
   public static void main(String[] args) throws FileNotFoundException{
     System.out.println(solve("ctravel.1.in"));
+    System.out.println(solve("ctravel.2.in"));
   }
 }
