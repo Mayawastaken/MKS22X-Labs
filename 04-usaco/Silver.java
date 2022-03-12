@@ -56,9 +56,11 @@ public class Silver{
     int col = in.nextInt();
     char[][] field = new char[row][col];
     int seconds = in.nextInt();
+    String line = "";
     for (int i = 0; i < row; i++){
+      line = in.nextLine();
       for (int j = 0; j < col; j++){
-        field[i][j] = in.nextChar();
+        field[i][j] = line.charAt(j);
       }
     }
     int startRow = in.nextInt();
@@ -72,5 +74,9 @@ public class Silver{
       timer++;
     }
     return goodField[endRow][endCol];
+  }
+
+  public static void main(String[] args) throws FileNotFoundException{
+    System.out.println(solve("ctravel.1.in"));
   }
 }
