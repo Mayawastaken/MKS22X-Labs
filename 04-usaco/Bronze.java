@@ -38,44 +38,44 @@ public class Bronze{
     return sumDepth * 72 * 72;
   }
 
-  public static String debug(int[][] print){
-    String s = "";
-    for (int[] row : print){
-      for (int x : row){
-        s += x + " ";
-      }
-      s += "\n";
-    }
-    return s;
-  }
+  // public static String debug(int[][] print){
+  //   String s = "";
+  //   for (int[] row : print){
+  //     for (int x : row){
+  //       s += x + " ";
+  //     }
+  //     s += "\n";
+  //   }
+  //   return s;
+  // }
 
   public static long solve(String filename) throws FileNotFoundException{ //might j make this solve
     File f = new File(filename);
     Scanner in = new Scanner(f);
     int row = in.nextInt();
-    System.out.println(row);
+    // System.out.println(row);
     int col = in.nextInt();
-    System.out.println(col);
+    // System.out.println(col);
     int[][] pasture = new int[row][col];
     int elevation = in.nextInt();
-    System.out.println(elevation);
+    // System.out.println(elevation);
     int numOfInst = in.nextInt();
-    System.out.println(numOfInst);
+    // System.out.println(numOfInst);
     int[][] inst = new int[numOfInst][3];
     for (int i = 0; i < row; i++){
       for (int j = 0; j < col; j++){
         pasture[i][j] = in.nextInt();
-        System.out.print(pasture[i][j] + " ");
+        //System.out.print(pasture[i][j] + " ");
       }
-      System.out.println("");
+      //System.out.println("");
     }
-    System.out.println("");
+    //System.out.println("");
     for (int i = 0; i < numOfInst; i++){
       for (int j = 0; j < 3; j++){
         inst[i][j] = in.nextInt();
-        System.out.print(inst[i][j] + " ");
+        //System.out.print(inst[i][j] + " ");
       }
-      System.out.println("");
+      //System.out.println("");
     } //FINISHED READING IN EVERYTHING
     //basically use instructions, solve -- solve will j combine all funcs
     int[][] toBeStomped = new int[3][3];
@@ -85,15 +85,15 @@ public class Bronze{
           toBeStomped[j][k] = pasture[inst[i][0] + j - 1][inst[i][1] + k - 1]; //check -1/weird row col stuff
         }
       }
-      System.out.println("\n TO BE: \n" + debug(toBeStomped));
+      // System.out.println("\n TO BE: \n" + debug(toBeStomped));
       int[][] stomped = stomp(toBeStomped, inst[i][2]);
-      System.out.println("STOMPED: \n" + debug(stomped));
+      // System.out.println("STOMPED: \n" + debug(stomped));
       for (int j = 0; j < 3; j++){
         for (int k = 0; k < 3; k++){
           pasture[inst[i][0] + j - 1][inst[i][1] + k - 1] = stomped[j][k];
         }
       }
-      System.out.println("NEW PASTURE: \n" + debug(pasture));
+      // System.out.println("NEW PASTURE: \n" + debug(pasture));
     }
     return depthCalcuate(pasture, elevation);
   }
