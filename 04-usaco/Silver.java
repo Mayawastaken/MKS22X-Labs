@@ -51,27 +51,31 @@ public class Silver{
 
 
   public static long solve(String filename) throws FileNotFoundException{
-    File f = new File(filename);
-    Scanner in = new Scanner(f);
-    int row = in.nextInt();
-    int col = in.nextInt();
-    char[][] field = new char[row][col];
-    int seconds = in.nextInt();
-    for (int i = 0; i < field.length; i++){
-      String line = in.next();
-      field[i] = line.toCharArray();
+    try{
+      File f = new File(filename);
+      Scanner in = new Scanner(f);
+      int row = in.nextInt();
+      int col = in.nextInt();
+      char[][] field = new char[row][col];
+      int seconds = in.nextInt();
+      for (int i = 0; i < field.length; i++){
+        String line = in.next();
+        field[i] = line.toCharArray();
+      }
+      int startRow = in.nextInt();
+      int startCol = in.nextInt();
+      int endRow = in.nextInt();
+      int endCol = in.nextInt();
+      long[][] goodField = charToLongBuffer(field, startRow, startCol);
+      int timer = 0;
+      while (timer < seconds){
+        goodField = newTime(goodField);
+        timer++;
+      }
+      return goodField[endRow][endCol];
+    } catch (FileNotFoundException e) {
+      return -1;
     }
-    int startRow = in.nextInt();
-    int startCol = in.nextInt();
-    int endRow = in.nextInt();
-    int endCol = in.nextInt();
-    long[][] goodField = charToLongBuffer(field, startRow, startCol);
-    int timer = 0;
-    while (timer < seconds){
-      goodField = newTime(goodField);
-      timer++;
-    }
-    return goodField[endRow][endCol];
   }
 
   public static void main(String[] args) throws FileNotFoundException{
