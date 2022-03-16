@@ -1,31 +1,38 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 public class Preliminary{
 
-  static int partition ( int [] data, int start, int end){
-    Random rand = new Random();
-    int pivotInd = rand.nextInt((end - start) + 1) + start;
+  public static void switches(int[] data, int l, int r){ //apparently switch is a keyword... i got sm errors LOL
+    int temp = data[l];
+    data[l] = data[r];
+    data[r] = temp;
+  }
+
+  public static int partition ( int [] data, int start, int end){
+    //i dont need to import random hehe
+    boolean ifGroup = true; //to deal with worst caseish stuff
+    int pivotInd = (int)(Math.random()*(end-start+1));
     int pivot = data[pivotInd];
     int left = start-1;
-    int right = end+1;
+    switches(data, pivotInd, end);
     for(int i = start; i <= end - 1; i++){
-      if (data[i] < pivot && i < pivotInd){
+      if (data[i] < pivot){
         left++;
-        int templ = data[left];
-        data[left] = data[i];
-        data[i] = templ;
+        switches(data, left, i);
       }
-      else if (data[i] > pivot && i > pivotInd){
-        right--;
-        int tempr = data[right];
-        data[right] = data[i];
-        data[i] = tempr;
+      else if (data[i] == pivot){
+        if (ifGroup){
+          ifGroup = false;
+          left++;
+          switches(data, left, i);
+        }
+        else{
+          ifGroup = false;
+        }
       }
     }
-    // int temp2 = data[left+1];
-    // data[left+1] = data[pivotInd];
-    // data[pivotInd] = temp2;
-    return (left + 1);
+    switches(data, left+1, end);
+    return left+1;
   }
 
 
