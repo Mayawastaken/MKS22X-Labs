@@ -11,7 +11,7 @@ public class Preliminary{
   public static int partition ( int [] data, int start, int end){
     //i dont need to import random hehe
     boolean ifGroup = true; //to deal with worst caseish stuff
-    int pivotInd = (int)(Math.random()*(end-start+1));
+    int pivotInd = (int)(Math.random()*(end-start)) + start;
     int pivot = data[pivotInd];
     int left = start-1;
     switches(data, pivotInd, end);
