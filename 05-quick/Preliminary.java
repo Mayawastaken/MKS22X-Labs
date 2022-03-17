@@ -36,11 +36,20 @@ public class Preliminary{
   }
 
   public static int seHelper(int[] data, int start, int end, int k){
-    
+    int pivotInd = partition(data, start, end);
+    if (pivotInd - start > k){
+      return seHelper(data, start, pivotInd - start, k);
+    }
+    else if (pivotInd - start < k){
+      return seHelper(data, pivotInd + 1, end, k - pivotInd + (start-1));
+    }
+    else{
+      return data[pivotInd];
+    }
   }
 
   public static int quickselect(int[]data, int k){
-    //uses my helper
+    return seHelper(data, 0, data.length - 1, k);
   }
 
   public static void main(String[] args){
