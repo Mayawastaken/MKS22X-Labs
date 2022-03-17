@@ -35,6 +35,13 @@ public class Preliminary{
     return left+1;
   }
 
+  public static int seHelper(int[] data, int start, int end, int k){
+    
+  }
+
+  public static int quickselect(int[]data, int k){
+    //uses my helper
+  }
 
   public static void main(String[] args){
     int[] ary1 = new int[]{99, 99, 4, 3, 2, 1, 0, 99, 99};
