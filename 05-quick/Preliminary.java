@@ -35,13 +35,13 @@ public class Preliminary{
     return left+1;
   }
 
-  public static int seHelper(int[] data, int start, int end, int k){
+  public static int seHelper(int[] data, int k, int start, int end){
     int pivotInd = partition(data, start, end);
     if (pivotInd - start > k){
-      return seHelper(data, start, pivotInd - start, k);
+      return seHelper(data, k, start, pivotInd - start);
     }
     else if (pivotInd - start < k){
-      return seHelper(data, pivotInd + 1, end, k - pivotInd + (start-1));
+      return seHelper(data, k - pivotInd + (start-1), pivotInd + 1, end);
     }
     else{
       return data[pivotInd];
@@ -51,6 +51,16 @@ public class Preliminary{
   public static int quickselect(int[]data, int k){
     return seHelper(data, 0, data.length - 1, k);
   }
+
+  public static void soHelper(int[] data, int start, int end){
+    
+  }
+
+  public static void quicksort(int[]data){
+
+  }
+
+
 
   public static void main(String[] args){
     int[] ary1 = new int[]{99, 99, 4, 3, 2, 1, 0, 99, 99};
