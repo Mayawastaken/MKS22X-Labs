@@ -52,15 +52,17 @@ public class Preliminary{
     return seHelper(data, k, 0, data.length - 1);
   }
 
-  public static void soHelper(int[] data, int start, int end){
-
+  public static void soHelper(int[] data, int start, int end){ //hmm this seems too short but also im p sure this works
+    if (start < end){
+      int pivot = partition(data, start, end);
+      soHelper(data, start, pivot -1);
+      soHelper(data, pivot + 1, end);
+    }
   }
 
   public static void quicksort(int[]data){
-
+    soHelper(data, 0, data.length - 1);
   }
-
-
 
   public static void main(String[] args){
     int[] ary1 = new int[]{99, 99, 4, 3, 2, 1, 0, 99, 99};
