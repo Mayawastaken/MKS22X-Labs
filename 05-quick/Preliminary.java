@@ -49,11 +49,11 @@ public class Preliminary{
   }
 
   public static int quickselect(int[]data, int k){
-    return seHelper(data, 0, data.length - 1, k);
+    return seHelper(data, k, 0, data.length - 1);
   }
 
   public static void soHelper(int[] data, int start, int end){
-    
+
   }
 
   public static void quicksort(int[]data){
