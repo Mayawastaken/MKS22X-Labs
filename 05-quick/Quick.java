@@ -71,6 +71,19 @@ public class Quick{
     return left+1;
   }
 
+
+  // public static int seHelper2(int[] data, int k, int start, int end){
+  //   int pivotInd = partition(data, start, end);
+  //   if (pivotInd > k - 1){
+  //     return seHelper2(data, k, start, pivotInd - 1);
+  //   }
+  //   else if (pivotInd < k - 1){
+  //     return seHelper2(data, k, pivotInd + 1, end);
+  //   }
+  //   return data[pivotInd];
+  // }
+  // Another idea for quickselect above, not sure if works but ye
+
   public static int seHelper(int[] data, int k, int start, int end){
     int pivotInd = partition(data, start, end);
     if (pivotInd - start > k){
@@ -106,5 +119,8 @@ public class Quick{
     int pivot1 = partition(ary1, 2, 6);
     System.out.println("Pivot value: "+ary1[pivot1]+ ", Pivot index: " + pivot1);
     System.out.println("Modified: " + Arrays.toString(ary1));
+    quicksort(ary1);
+    System.out.println("Sorted: " + Arrays.toString(ary1));
+    System.out.println("Quickselect: index is 0, element is " + quickselect(ary1, 0));
   }
 }
