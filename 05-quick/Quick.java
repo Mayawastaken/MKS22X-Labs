@@ -8,6 +8,42 @@ public class Quick{
     data[r] = temp;
   }
 
+  // public static int partition2 ( int [] data, int start, int end){
+  //   boolean ifGroup = true;
+  //   int pivotInd = (int)(Math.random()*(end-start)) + start;
+  //   int pivot = data[pivotInd];
+  //   int left = start+1;
+  //   int right = end;
+  //   switches(data, pivotInd, end);
+  //   while(right - left > 0){ //as right > left og
+  //     int ind = left+1;
+  //     if (data[ind] < data[start]){
+  //       left++;
+  //       switches(data, left, ind);
+  //     }
+  //     else if (data[ind] > data[start]){
+  //       right--;
+  //       switches(data, right, ind);
+  //     }
+  //     else{
+  //       if (ifGroup){
+  //         ifGroup = false;
+  //         switches(data, left, ind);
+  //       }
+  //       else{
+  //         ifGroup = true;
+  //         switches(data, right, ind);
+  //       }
+  //     }
+  //   }
+  //   if (data[left] > data[start]){
+  //     left--;
+  //   }
+  //   switches(data, left, start);
+  //   return left;
+  // }
+  // above is a 2nd version of partition for fun, still not dutch or faster tho
+
   public static int partition ( int [] data, int start, int end){
     //i dont need to import random hehe
     boolean ifGroup = true; //to deal with worst caseish stuff
@@ -27,7 +63,7 @@ public class Quick{
           switches(data, left, i);
         }
         else{
-          ifGroup = false;
+          ifGroup = true;
         }
       }
     }
