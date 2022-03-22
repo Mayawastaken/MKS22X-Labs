@@ -41,6 +41,18 @@ public class Merge{     // know rutime of stuff and why, knw when u cant do stuf
   }
 
   public static int[] mergesortH(int [] data){
+    if (data.length > 1){
+      int[] left = new int[data.length/2];
+      int[] right = new int[data.length - left.length];
+      for (int i = 0; i < left.length; i++){
+        left[i] = data[i];
+      }
+      for (int i = 0; i < right.length; i++){
+        right[i] = data[i+left.length];
+      }
+      
+    }
+
     // if more than 1 element{
     //   left = copy half of data
     //   right = copy other half of data
