@@ -6,24 +6,32 @@ public class Merge{     // know rutime of stuff and why, knw when u cant do stuf
     //int minLen = Math.min(left.length, right.length);
     int leftInd = 0, rightInd = 0, combinedInd = 0;
     while (leftInd < left.length && rightInd < right.length){
-      if (left[leftInd] > right[rightInd]){
-        combined[combinedInd] = left[leftInd];
+      if (left[leftInd] < right[rightInd]){
+        int temp = left[leftInd];
+        combined[combinedInd] = temp;
         leftInd++;
       }
       else{
-        combined[combinedInd] = right[rightInd];
+        int temp = right[rightInd];
+        combined[combinedInd] = temp;
         rightInd++;
       }
       combinedInd++;
     }
-    if (leftInd == left.length - 1){
+    System.out.println(Arrays.toString(combined)); //up till here we good hm
+    System.out.println("left ind: " + leftInd + "\nright ind: " + rightInd);
+    if (leftInd == left.length){
       for (int i = rightInd; i < right.length; i++){
-        combined[combinedInd] = right[i];
+        int temp = right[i];
+        combined[combinedInd] = temp;
+        combinedInd++;
       }
     }
-    else if (rightInd == right.length - 1){
+    else if (rightInd == right.length){
       for (int i = leftInd; i < left.length; i++){
-        combined[combinedInd] = left[i];
+        int temp = left[i];
+        combined[combinedInd] = temp;
+        combinedInd++;
       }
       //add rest of left and make sure it acc transfers data w ar[i] = ar2[i2] like is it the acc value or smth else
     }
@@ -46,8 +54,8 @@ public class Merge{     // know rutime of stuff and why, knw when u cant do stuf
   }
 
   public static void main(String[] args){
-    int[] a1 = new int[]{4,3,2,1};
-    int[] a2 = new int[]{-4,4,1};
+    int[] a1 = new int[]{0,6,7,8,9};
+    int[] a2 = new int[]{1,2,3,4, 10};
     System.out.println(Arrays.toString(merge(a1,a2)));
 
 
