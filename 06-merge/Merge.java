@@ -36,8 +36,10 @@ public class Merge{     // know rutime of stuff and why, knw when u cant do stuf
   }
 
   public static void mergesort(int [] data){
-    // int [] temp  =  mergeSortH(data);
-    //copy temp into data
+    int [] temp  =  mergesortH(data);
+    for(int i = 0; i < data.length; i++){
+      data[i] = temp[i];
+    }
   }
 
   public static int[] mergesortH(int [] data){
@@ -68,6 +70,8 @@ public class Merge{     // know rutime of stuff and why, knw when u cant do stuf
     System.out.println(Arrays.toString(merge(a1,a2)));
     System.out.println(Arrays.toString(mergesortH(a3)));
     System.out.println(Arrays.toString(new int[]{}));
+    mergesort(a3);
+    System.out.println(Arrays.toString(a3));
   }
 
 }
