@@ -45,28 +45,29 @@ public class Merge{     // know rutime of stuff and why, knw when u cant do stuf
       int[] left = new int[data.length/2];
       int[] right = new int[data.length - left.length];
       for (int i = 0; i < left.length; i++){
-        left[i] = data[i];
+        int temp = data[i];
+        left[i] = temp;
       }
       for (int i = 0; i < right.length; i++){
-        right[i] = data[i+left.length];
+        int temp = data[i+left.length];
+        right[i] = temp;
       }
-      
+      left = mergesortH(left);
+      right = mergesortH(right);
+      return merge(left, right);
     }
-
-    // if more than 1 element{
-    //   left = copy half of data
-    //   right = copy other half of data
-    //   sort each half and merge them together
-    // }
-    return (new int[]{});
+    else{
+      return data;
+    }
   }
 
   public static void main(String[] args){
     int[] a1 = new int[]{0,6,7,8,9,11,13};
     int[] a2 = new int[]{1,2,3,4,10};
+    int[] a3 = new int[]{345,45,-45,324,23,1,-2,3};
     System.out.println(Arrays.toString(merge(a1,a2)));
-
-
+    System.out.println(Arrays.toString(mergesortH(a3)));
+    System.out.println(Arrays.toString(new int[]{}));
   }
 
 }
