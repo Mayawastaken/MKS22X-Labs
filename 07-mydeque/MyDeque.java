@@ -40,7 +40,7 @@ public class MyDeque<E>{
   }
 
   public String toString(){ }
-  
+
 
   public void addFirst(E element){
     if (element == null){
@@ -49,10 +49,12 @@ public class MyDeque<E>{
     if (start == 0 && data.length-1 != end){
       data[data.length-1] = element;
       start = data.length-1;
+      size++;
     }
     else if (start-1 != end){
       data[start-1] = element;
       start--;
+      size++;
     }
     else {
       this.resize(); //data.resize? or j resize?
@@ -66,10 +68,12 @@ public class MyDeque<E>{
     if (end == data.length-1 && 0 != start){
       data[0] = element;
       end = 0;
+      size++;
     }
     else if (end+1 != start){
       data[end+1] = element;
       end++;
+      size++;
     }
     else {
       this.resize(); //data.resize? or j resize?
