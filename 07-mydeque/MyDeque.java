@@ -164,7 +164,11 @@ public class MyDeque<E>{
     E removed = data[start];
     data[start] = null;
     size--;
-    if (size != 1 && start == data.length-1){
+    if (size == 1){ //front == end
+      front = -1;
+      end = -1;
+    }
+    else if (start == data.length-1){
       start = 0;
     }
     else{
@@ -176,17 +180,21 @@ public class MyDeque<E>{
 
   public E removeLast(){
     if (size == 0){
-      throw new NoSuchElementException("no elements in deque to remove last");
+      throw new NoSuchElementException("no elements in deque to remove first");
     }
-    E removed = data[end];
-    data[end] = null;
+    E removed = data[start];
+    data[start] = null;
     size--;
-    if (size != 1 && end == 0){
-      end = size-1;
+    if (size == 1){ //front == end
+      front = -1;
+      end = -1;
+    }
+    else if (end == 0){
+      end = data.length-1;
     }
     else{
       end--;
-    } //bcs end will always be going ---> ie will never wrap around uhh
+    } //bcs end will always be going ---> ie will never wrap around or uh
     return removed;
   }
 
