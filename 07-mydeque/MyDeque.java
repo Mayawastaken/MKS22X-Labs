@@ -10,7 +10,7 @@ public class MyDeque<E>{
     E[] d = (E[])new Object[10];
     data = d;
     size = 0;
-    start = 0;
+    start = -1;
     end = 0;
   }
 
@@ -19,7 +19,7 @@ public class MyDeque<E>{
     E[] d = (E[])new Object[initialCapacity];
     data = d;
     size = 0;
-    start = 0;
+    start = -1;
     end = 0;
   }
 
@@ -104,39 +104,56 @@ public class MyDeque<E>{
     if (element == null){
       throw new NullPointerException("can't add null to first");
     }
-    if (start == 0 && data.length-1 != end){
+    if (size == data.length){
+      this.resize();
+    }
+    if (start == 0){
       data[data.length-1] = element;
       start = data.length-1;
       size++;
     }
-    else if (start-1 != end){
+    else if (start == -1){
+      data[0] = element;
+      start++;
+      end = 0;
+      size++
+    }
+    else{
       data[start-1] = element;
       start--;
       size++;
     }
-    else {
-      this.resize(); //data.resize? or j resize?
-      addFirst(element);
-    }
+    // else {
+    //   this.resize(); //data.resize? or j resize?
+    //   addFirst(element);
+    // }
   }
   public void addLast(E element) throws NullPointerException{
     if (element == null){
       throw new NullPointerException("can't add null to last");
     }
-    if (end == data.length-1 && 0 != start){
+    if (size == data.length){
+      this.resize();
+    }
+    if (start == -1){
       data[0] = element;
       end = 0;
       size++;
     }
-    else if (end+1 != start){
+    else if (end == data.length-1){
+      data[0] = element;
+      end = 0;
+      size++;
+    }
+    else{
       data[end+1] = element;
       end++;
       size++;
     }
-    else {
-      this.resize(); //data.resize? or j resize?
-      addLast(element);
-    }
+    // else {
+    //   this.resize(); //data.resize? or j resize?
+    //   addLast(element);
+    // }
   }
 
 
