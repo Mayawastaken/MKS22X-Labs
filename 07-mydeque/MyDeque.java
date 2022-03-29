@@ -30,9 +30,21 @@ public class MyDeque<E>{
   private void resize(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[size * 2 + 1]; //assuming we have a checker to see if size hits capacity
+    int newStart = start;
+    if (start == -1){
+      newStart = 0;
+    }
     int dind = 0;
-    if (end < start){
-      for (int i = start; i < data.length; i++){
+    if (newStart <= end){
+      for (int i = newStart; i <= end; i++){
+        d[dind] = data[i];
+        dind++;
+      }
+      start = 0;
+      end = dind-1; // or dind-1?
+    }
+    else if (newStart > end){
+      for (int i = newStart; i < data.length; i++){
         d[dind] = data[i];
         dind++;
       }
@@ -40,14 +52,10 @@ public class MyDeque<E>{
         d[dind] = data[i];
         dind++;
       }
+      start = 0;
+      end = dind-1; // or dind-1?
     }
-    else if (end > start){
-      for (int i = 0; i <= end; i++){
-        d[dind] = data[i];
-      }
-    }
-    //um what if end = start like 0 elements 0 size?
-
+    data = d;
   }
   //ugh toString debug here we go
 
@@ -66,12 +74,24 @@ public class MyDeque<E>{
 
   public String toString(){
     String s = "[";
-    if (start == end){
+    int stringStart = start;
+    if (size == 0){
       return "[]";
     }
-    int dind = 0;
-    if (start < end){
-      for (int i = start; i <= end; i++){
+    // if (end == -1){ //end is only -1 if 1 element? idk
+    //   s += data[0] + "]";
+    //   return s;
+    // }
+    if (start == -1){
+      stringStart = 0;
+    }
+    if (start == end){
+      s += data[start] + "]";
+     return s;
+    }
+    //int dind = 0;
+    if (stringStart < end){
+      for (int i = stringStart; i <= end; i++){
         if (i != end){
           s += data[i] + ", ";
         }
@@ -80,19 +100,20 @@ public class MyDeque<E>{
         }
       }
     }
-    else if (start > end){
-      for (int i = start; i < data.length; i++){
-        s += data[dind] + ", ";
-        dind++;
+    else if (stringStart > end){
+      for (int i = stringStart; i < data.length; i++){
+        //System.out.println("sstart: " + stringStart);
+        s += data[i] + ", ";
+        //dind++;
       }
       for (int i = 0; i <= end; i++){
         if (i != end){
-          s += data[dind] + ", ";
-          dind++;
+          s += data[i] + ", ";
+          //dind++;
         }
         else{
-          s+= data[dind] + "]";
-          dind++;
+          s+= data[i] + "]";
+          //dind++;
         }
       }
     }
@@ -116,7 +137,8 @@ public class MyDeque<E>{
       data[0] = element;
       start++;
       end = 0;
-      size++
+      start = 0;
+      size++;
     }
     else{
       data[start-1] = element;
@@ -133,11 +155,13 @@ public class MyDeque<E>{
       throw new NullPointerException("can't add null to last");
     }
     if (size == data.length){
+      System.out.println("resizing!");
       this.resize();
     }
     if (start == -1){
       data[0] = element;
       end = 0;
+      start = 0;
       size++;
     }
     else if (end == data.length-1){
@@ -164,9 +188,9 @@ public class MyDeque<E>{
     E removed = data[start];
     data[start] = null;
     size--;
-    if (size == 1){ //front == end
-      front = -1;
-      end = -1;
+    if (size == 0){ //start == end
+      start = -1;
+      end = 0; //only time end = 0 is when 1 element
     }
     else if (start == data.length-1){
       start = 0;
@@ -183,11 +207,11 @@ public class MyDeque<E>{
       throw new NoSuchElementException("no elements in deque to remove first");
     }
     E removed = data[start];
-    data[start] = null;
+    data[end] = null;
     size--;
-    if (size == 1){ //front == end
-      front = -1;
-      end = -1;
+    if (size == 0){ //start == end
+      start = -1;
+      end = 0; //only time end = 0 is when 1 element
     }
     else if (end == 0){
       end = data.length-1;
@@ -214,15 +238,72 @@ public class MyDeque<E>{
 
   public static void main(String[] args){
     MyDeque<Integer> test1 = new MyDeque<Integer>(5);
-    System.out.println(test1.toString());
+    System.out.println("TOSTRING" + test1.toString());
     test1.addLast(0);
-    System.out.println(test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
+    System.out.println("TOSTRING" + test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
     System.out.println(test1.toStringDebug());
     test1.addLast(1);
-    System.out.println(test1.toString());
+    System.out.println("TOSTRING" + test1.toString());
     System.out.println(test1.toStringDebug());
-    test1.addFirst(2);
-    System.out.println(test1.toString()); //oh lord
+    test1.addFirst(4);
+    System.out.println("TOSTRING" + test1.toString());
     System.out.println(test1.toStringDebug());
+    test1.addFirst(3);
+    System.out.println("TOSTRING" + test1.toString());
+    System.out.println(test1.toStringDebug());
+    test1.addLast(2);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.removeLast();
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.removeFirst();
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.removeLast();
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.removeLast();
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.removeLast();
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addLast(0);
+    System.out.println("TOSTRING" + test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
+    System.out.println(test1.toStringDebug());
+    test1.addLast(1);
+    System.out.println("TOSTRING" + test1.toString());
+    System.out.println(test1.toStringDebug());
+    test1.addFirst(4);
+    System.out.println("TOSTRING" + test1.toString());
+    System.out.println(test1.toStringDebug());
+    test1.addFirst(3);
+    System.out.println("TOSTRING" + test1.toString());
+    System.out.println(test1.toStringDebug());
+    test1.addLast(2);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addLast(100);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addLast(200);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addFirst(300);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addLast(400);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addFirst(500);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addFirst(600);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
+    test1.addFirst(700);
+    System.out.println(test1.toStringDebug());
+    System.out.println("TOSTRING" + test1.toString());
   }
 }
