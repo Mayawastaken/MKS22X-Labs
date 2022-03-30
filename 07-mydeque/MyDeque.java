@@ -215,7 +215,7 @@ public class MyDeque<E>{
     if (size == 0){
       throw new NoSuchElementException("no elements in deque to remove first");
     }
-    E removed = data[start];
+    E removed = data[end];
     data[end] = null;
     size--;
     if (size == 0){ //start == end
@@ -317,7 +317,7 @@ public class MyDeque<E>{
     test1.removeLast();
     System.out.println(test1.toStringDebug());
     System.out.println("TOSTRING" + test1.toString());
-    test1.removeFirst();
+    System.out.println(test1.removeFirst());
     System.out.println(test1.toStringDebug());
     System.out.println("TOSTRING" + test1.toString());
     // MyDeque<Integer> test2 = new MyDeque<Integer>();
