@@ -59,18 +59,18 @@ public class MyDeque<E>{
   }
   //ugh toString debug here we go
 
-  public String  toStringDebug(){
-    String s = "[";
-    for (int i = 0; i < data.length; i++){
-      if (i != data.length-1){
-        s += data[i] + ", ";
-      }
-      else{
-        s += data[i];
-      }
-    }
-    return s + "]";
-  }
+  // public String  toStringDebug(){
+  //   String s = "[";
+  //   for (int i = 0; i < data.length; i++){
+  //     if (i != data.length-1){
+  //       s += data[i] + ", ";
+  //     }
+  //     else{
+  //       s += data[i];
+  //     }
+  //   }
+  //   return s + "]";
+  // }
 
   public String toString(){
     String s = "[";
@@ -246,87 +246,87 @@ public class MyDeque<E>{
   }
 
   public static void main(String[] args){
-    MyDeque<Integer> test1 = new MyDeque<Integer>(5);
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addLast(0);
-    System.out.println("TOSTRING" + test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
-    System.out.println(test1.toStringDebug());
-    test1.addLast(1);
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.toStringDebug());
-    test1.addFirst(4);
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.toStringDebug());
-    test1.addFirst(3);
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.toStringDebug());
-    test1.addLast(2);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.removeLast();
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.removeFirst();
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.removeLast();
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.removeLast();
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.removeLast();
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addLast(0);
-    System.out.println("TOSTRING" + test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
-    System.out.println(test1.toStringDebug());
-    test1.addLast(1);
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.toStringDebug());
-    test1.addFirst(4);
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.toStringDebug());
-    test1.addFirst(3);
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.toStringDebug());
-    test1.addLast(2);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addLast(100);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addLast(200);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addFirst(300);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addLast(400);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addFirst(500);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addFirst(600);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.addFirst(700);
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    test1.removeLast();
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    System.out.println(test1.removeFirst());
-    System.out.println(test1.toStringDebug());
-    System.out.println("TOSTRING" + test1.toString());
-    // MyDeque<Integer> test2 = new MyDeque<Integer>();
-    // test2.addFirst(1);
-    // System.out.println(test2.toStringDebug());
-    // System.out.println("TOSTRING" + test2.toString());
-    // for (int i = 0; i < 8; i++) {
-    //   test2.addLast(i);
-    //   test2.removeFirst();
+    // MyDeque<Integer> test1 = new MyDeque<Integer>(5);
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addLast(0);
+    // System.out.println("TOSTRING" + test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
+    // System.out.println(test1.toStringDebug());
+    // test1.addLast(1);
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.toStringDebug());
+    // test1.addFirst(4);
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.toStringDebug());
+    // test1.addFirst(3);
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.toStringDebug());
+    // test1.addLast(2);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.removeLast();
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.removeFirst();
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.removeLast();
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.removeLast();
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.removeLast();
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addLast(0);
+    // System.out.println("TOSTRING" + test1.toString()); //hmm it adds a null.. also what to do when start = end for like all of them? the start off is weird
+    // System.out.println(test1.toStringDebug());
+    // test1.addLast(1);
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.toStringDebug());
+    // test1.addFirst(4);
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.toStringDebug());
+    // test1.addFirst(3);
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.toStringDebug());
+    // test1.addLast(2);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addLast(100);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addLast(200);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addFirst(300);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addLast(400);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addFirst(500);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addFirst(600);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.addFirst(700);
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // test1.removeLast();
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // System.out.println(test1.removeFirst());
+    // System.out.println(test1.toStringDebug());
+    // System.out.println("TOSTRING" + test1.toString());
+    // // MyDeque<Integer> test2 = new MyDeque<Integer>();
+    // // test2.addFirst(1);
+    // // System.out.println(test2.toStringDebug());
+    // // System.out.println("TOSTRING" + test2.toString());
+    // // for (int i = 0; i < 8; i++) {
+    // //   test2.addLast(i);
+    // //   test2.removeFirst();
     //   System.out.println(test2.toStringDebug());
     //   System.out.println("TOSTRING" + test2.toString());
     // }
