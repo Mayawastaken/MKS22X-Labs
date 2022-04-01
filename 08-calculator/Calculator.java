@@ -15,15 +15,44 @@ public class Calculator{
    while (postfix.hasNext()){
      String current = postfix.next();
      if (current.equals("+") || current.equals("-") || current.equals("*") || current.equals("/") || current.equals("%")){
-       // if deque has more operations and no numbers, bad
-       // if result.length == 0, return error; else do math yay
+       if (result.size() < 2){
+         throw new IllegalArgumentException("too few operands for operation " + current);
+       }
+       else{
+         double afterOperator = result.removeLast();
+         double beforeOperator = result.removeLast();
+         if (current.equals("+")){
+           result.addLast((beforeOperator + afterOperator));
+         }
+         if (current.equals("-")){
+           result.addLast((beforeOperator - afterOperator));
+         }
+         if (current.equals("/")){
+           result.addLast((beforeOperator * 1.0 / afterOperator));
+         }
+         if (current.equals("*")){
+           result.addLast((beforeOperator * afterOperator));
+         }
+         if (current.equals("%")){
+           result.addLast((beforeOperator * 1.0 % afterOperator));
+         }
+         // convert current to operator
+       }
      }
      else { //this assumes valid math input ie no like letters like (4 3 / m + d -) or smth
        double addToDeque = Double.parseDouble(current);
        result.add(addToDeque);
      }
    }
-   // if the deque has 2+ in deque by time u hit here, bad. if deque has more operations and no numbers, bad pt 2.
-   return 110105;
+   if (result.size() > 1){
+     throw new IllegalArgumentException("too many operands");
+   }
+   return result.getFirst();
+ }
+
+
+ public static void main(String[] args){
+   String s1 = "4 2 + 3 5 1 - * +";
+   System.out.println(eval(s1));
  }
 }
