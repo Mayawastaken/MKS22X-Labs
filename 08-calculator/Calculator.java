@@ -28,13 +28,13 @@ public class Calculator{
            result.addLast((beforeOperator - afterOperator));
          }
          if (current.equals("/")){
-           result.addLast((beforeOperator * 1.0 / afterOperator));
+           result.addLast(((beforeOperator * 1.0) / afterOperator));
          }
          if (current.equals("*")){
            result.addLast((beforeOperator * afterOperator));
          }
          if (current.equals("%")){
-           result.addLast((beforeOperator * 1.0 % afterOperator));
+           result.addLast(((beforeOperator * 1.0) % afterOperator));
          }
          // convert current to operator
        }
