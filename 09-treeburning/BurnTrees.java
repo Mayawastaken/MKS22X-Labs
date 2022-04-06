@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.*; //ummm its doing smth LOL fix at home
 public class BurnTrees{
   private int[][]map;
   private int ticks;
@@ -30,10 +30,40 @@ public class BurnTrees{
   public void tick(){ //i assume done runs first, if not add if size is 0 j dont do anything;
     int numOfFires = frontier.size();
     for (int i = 0; i < numOfFires; i++){
+      int[] getfirst = new int[]{frontier.element()[0], frontier.element()[1]};
+      //if we aint outta bounds
+      if (getfirst[0] < map.length-1){
+        if (map[getfirst[0]+1][getfirst[1]] == TREE){
+          frontier.add(new int[]{getfirst[0]+1, getfirst[1]});
+          map[getfirst[0]+1][getfirst[1]] = FIRE;
+        }
+      }
+      if (getfirst[0] > 0){
+        if (map[getfirst[0]-1][getfirst[1]] == TREE){
+          frontier.add(new int[]{getfirst[0]-1, getfirst[1]});
+          map[getfirst[0]-1][getfirst[1]] = FIRE;
+        }
+      }
+      if (getfirst[1] < map.length-1){ //assumes square
+        if (map[getfirst[0]][getfirst[1]+1] == TREE){
+          frontier.add(new int[]{getfirst[0], getfirst[1]+1});
+          map[getfirst[0]][getfirst[1]+1] = FIRE;
+        }
+      }
+      if (getfirst[1] > 0){ //assumes square
+        if (map[getfirst[0]][getfirst[1]-1] == TREE){
+          frontier.add(new int[]{getfirst[0], getfirst[1]-1});
+          map[getfirst[0]][getfirst[1]-1] = FIRE;
+        }
+      }
+      //if r, c+1 is tree make fire etc 4 times and add it to frontier
       //add new fires
     }
     for (int i = 0; i < numOfFires; i++){
+      map[(frontier.element())[0]][(frontier.element())[1]] = ASH;
+      frontier.remove();
       //remove old fires WHICH IS ALWAYS AT INDEX 0 since u always remove the front <3 i is j for looping ez
+      //and make these fires ash
     }
     //leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
