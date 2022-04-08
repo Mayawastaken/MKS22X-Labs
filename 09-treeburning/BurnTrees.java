@@ -56,15 +56,12 @@ public class BurnTrees{
           map[getfirst[0]][getfirst[1]-1] = FIRE;
         }
       }
+      map[(frontier.element())[0]][(frontier.element())[1]] = ASH;
+      frontier.remove();
       //if r, c+1 is tree make fire etc 4 times and add it to frontier
       //add new fires
     }
-    for (int i = 0; i < numOfFires; i++){
-      map[(frontier.element())[0]][(frontier.element())[1]] = ASH;
-      frontier.remove();
-      //remove old fires WHICH IS ALWAYS AT INDEX 0 since u always remove the front <3 i is j for looping ez
-      //and make these fires ash
-    }
+
     //leave this here.
     //YOU MUST IMPLEMENT THE REST OF THIS METHOD
     //(BEFORE WRITING ANY CODE READ ALL OF THE CODE AND SEE HOW IT FITS TOGETHER)
