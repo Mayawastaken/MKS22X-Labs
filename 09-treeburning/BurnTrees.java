@@ -44,7 +44,7 @@ public class BurnTrees{
           map[getfirst[0]-1][getfirst[1]] = FIRE;
         }
       }
-      if (getfirst[1] < map.length-1){ //assumes square
+      if (getfirst[1] < map[0].length-1){ //assumes at least 1 col
         if (map[getfirst[0]][getfirst[1]+1] == TREE){
           frontier.add(new int[]{getfirst[0], getfirst[1]+1});
           map[getfirst[0]][getfirst[1]+1] = FIRE;
