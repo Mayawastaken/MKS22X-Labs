@@ -101,13 +101,39 @@ public class BurnTrees{
     }
   }
 
-
+  public static double averageTicks(int runs, int squareSize, double density){
+    double totalTicks = 0;
+    for (int i = 1; i <= runs; i++){
+      BurnTrees b = new BurnTrees(squareSize, squareSize, density);
+      b.start();
+      int current = b.run();
+      totalTicks += current;
+      //System.out.println(current);
+    }
+    return ((totalTicks) / runs);
+  }
 
     public static void main(String[]args){
       int WIDTH = 20;
       int HEIGHT = 20;
       int DELAY = 200;
       double DENSITY = .7;
+      if (args.length == 0){
+        System.out.println("TABLE 1: Size 100x100 Board, 100 Repetitions Averaged per Density (5% to 95% with increments of 5%)");
+        System.out.println("Density (%) | Avg Ticks");
+        System.out.println("------------------------");
+        System.out.println("   " + "5" + "%       |   " + averageTicks(100, 100, 5));
+        for (int i = 10; i <= 95; i += 5){
+          System.out.println("   " + i + "%      |   " + averageTicks(100, 100, i));
+        }
+        System.out.println("");
+        System.out.println("TABLE 2: Size 100x100 Board, 100 Repetitions Averaged per Density (55% to 65% with increments of 1%)");
+        System.out.println("Density (%) | Avg Ticks");
+        System.out.println("------------------------");
+        for (int i = 55; i <= 65; i++){
+          System.out.println("   " + i + "%      |   " + averageTicks(100, 100, i));
+        }
+      }
       if(args.length > 1){
         WIDTH = Integer.parseInt(args[0]);
         HEIGHT = Integer.parseInt(args[1]);

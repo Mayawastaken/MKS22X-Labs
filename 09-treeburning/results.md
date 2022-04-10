@@ -13,6 +13,16 @@ Two tables include a header that tells the number of repetitions and board size 
 One table from 5% to 95% density in 5% intervals.
 The other table from x% to y% density in 1% intervals, where x and y are around the maximum.
 
-| Header One     | Header Two     |
+
+## TABLE 1: Size 100x100 Board, 100 Repetitions Averaged per Density (5% to 95% with increments of 5%)
+
+| Density (%)     | Avg Ticks    |
+| :------------- | :------------- |
+| Item One       | Item Two       |
+
+
+## TABLE 2: Size 100x100 Board, 100 Repetitions Averaged per Density (55% to 65% with increments of 5%)
+
+| Density (%)     | Avg Ticks    |
 | :------------- | :------------- |
 | Item One       | Item Two       |
