@@ -18,11 +18,38 @@ The other table from x% to y% density in 1% intervals, where x and y are around 
 
 | Density (%)     | Avg Ticks    |
 | :------------- | :------------- |
-| Item One       | Item Two       |
+   5%       |   32.63
+   10%      |   2.0
+   15%      |   2.77
+   20%      |   3.64
+   25%      |   5.41
+   30%      |   6.27
+   35%      |   8.64
+   40%      |   11.74
+   45%      |   18.7
+   50%      |   29.41
+   55%      |   64.47
+   60%      |   179.67
+   65%      |   175.58
+   70%      |   145.48
+   75%      |   131.01
+   80%      |   122.34
+   85%      |   115.62
+   90%      |   110.49
+   95%      |   106.29
 
 
-## TABLE 2: Size 100x100 Board, 100 Repetitions Averaged per Density (55% to 65% with increments of 5%)
+
+
+## TABLE 2: Size 100x100 Board, 100 Repetitions Averaged per Density (60% to 65% with increments of 1%)
 
 | Density (%)     | Avg Ticks    |
 | :------------- | :------------- |
-| Item One       | Item Two       |
+   60%      |   175.86
+   61%      |   205.45
+   62%      |   209.54
+   63%      |   195.69
+   64%      |   186.37
+   65%      |   172.89
+
+(Note: As I am not using seeds/storing each trial, the 60% and 65% averages are slightly different between tables, as a new 100 repetitions/trials are ran. Of course, when BurnTrees is run, in my main, the percentages will also be slightly different.)

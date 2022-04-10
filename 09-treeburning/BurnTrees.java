@@ -122,14 +122,14 @@ public class BurnTrees{
         System.out.println("Density (%) | Avg Ticks");
         System.out.println("------------------------");
         System.out.println("   " + "5" + "%       |   " + averageTicks(100, 100, .5));
-        for (double i = .10; i <= .95; i += .05){
+        for (double i = .10; i < .97; i += .05){
           System.out.println("   " + Math.round(i*100) + "%      |   " + averageTicks(100, 100, i));
         }
         System.out.println("");
         System.out.println("TABLE 2: Size 100x100 Board, 100 Repetitions Averaged per Density (60% to 65% with increments of 1%)");
         System.out.println("Density (%) | Avg Ticks");
         System.out.println("------------------------");
-        for (double i = .6; i <= .65; i += .01){
+        for (double i = .6; i <= .655; i += .01){
           System.out.println("   " + Math.round(i*100) + "%      |   " + averageTicks(100, 100, i));
         }
       }
