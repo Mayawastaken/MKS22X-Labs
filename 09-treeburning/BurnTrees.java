@@ -121,7 +121,7 @@ public class BurnTrees{
         System.out.println("TABLE 1: Size 100x100 Board, 100 Repetitions Averaged per Density (5% to 95% with increments of 5%)");
         System.out.println("Density (%) | Avg Ticks");
         System.out.println("------------------------");
-        System.out.println("   " + "5" + "%       |   " + averageTicks(100, 100, .5));
+        System.out.println("   " + "5" + "%       |   " + averageTicks(100, 100, .05));
         for (double i = .10; i < .97; i += .05){
           System.out.println("   " + Math.round(i*100) + "%      |   " + averageTicks(100, 100, i));
         }
