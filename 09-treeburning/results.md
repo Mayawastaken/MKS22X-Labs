@@ -18,7 +18,7 @@ The other table from x% to y% density in 1% intervals, where x and y are around 
 
 | Density (%)     | Avg Ticks    |
 | :------------- | :------------- |
-   5%       |   32.63
+   5%       |   1.63
    10%      |   2.0
    15%      |   2.77
    20%      |   3.64
