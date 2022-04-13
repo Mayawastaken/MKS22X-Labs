@@ -70,7 +70,7 @@
      *Please use the same values that it was initialized with in the setup.
      * ANSWER: UPDATE THE NEXT LINE
      */
-    treeSim = null;
+    treeSim = new BurnTrees(ROWS, COLS, DENSITY);
   }
 
 
