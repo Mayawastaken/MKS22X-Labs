@@ -45,7 +45,7 @@
      *(The print statement is NOT part of the simulation, it is to help you answer this question)
      *hint:  If you cannot figure this out analytically, experiment to test
      *       the difference by changing the code. A print statement is commented out to facilitate testing.
-     *ANSWER HERE:
+     *ANSWER HERE: We do this so that our simulation will be slower/more easily understandable, as opposed to having our treeSim tick every frame (ever 10 frames will be slower).
      */
 
     String[]lines = treeSim.toString().split("\n");
