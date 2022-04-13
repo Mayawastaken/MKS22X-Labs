@@ -16,7 +16,7 @@
      *At this point you have initialized width, height,ROWS,COLS. You can change these values
      *to alter the screen size, but you cannot just change one value!
      *What must be true about the ratio of these values in order for this simulation to display squares?
-     *ANSWER HERE: The ratio of width to height must be 1:1 in order to be a square (as the height and with of a square are equal), and similarly the ratio of ROWS:COLS must be 1:1.
+     *ANSWER HERE: The ratio of height to width and ROWS to COLS must be equal.
      */
 
     DENSITY = .61;
@@ -82,8 +82,35 @@
    *ANSWER: Complete this method.
    */
   void stringToSquares(String[]lines) {
+    for (int i = 0; i < lines.length; i++){
+      for (int j = 0; j < (lines.length).length(); j++{){
+        if ((lines.length).charAt(j) == ' '){
+        
+        }
+        if ((lines.length).charAt(j) == '@'){
+        
+        }
+        if ((lines.length).charAt(j) == 'w'){
+        
+        }
+        if ((lines.length).charAt(j) == '.'){
+        
+        }
+      }
+    }
     /**Complete this method.
      *1. Break up your screen by drawing ROWSxCOLS squares of the same color.
+     
+         
+          
+          if (map[i][c]==SPACE)
+            builder.append(" ");
+          else if (map[i][c]==TREE)
+            builder.append("@");
+          else if (map[i][c]==FIRE)
+            builder.append("w");
+          else if (map[i][c]==ASH)
+            builder.append(".");
      *2. Decide how to fill them in using the String[] parameter
      *   Colors: Fire = RED, Tree = GREEN, SPACE = WHITE, ASH = GREY
      */
