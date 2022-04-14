@@ -83,18 +83,22 @@
    */
   void stringToSquares(String[]lines) {
     for (int i = 0; i < lines.length; i++){
-      for (int j = 0; j < (lines.length).length(); j++{){
-        if ((lines.length).charAt(j) == ' '){
-        
+      for (int j = 0; j < (lines[i]).length(); j++){
+        if ((lines[i]).charAt(j) == ' '){
+          fill(255);
+          square(j*SQUARESIZE,i*SQUARESIZE,SQUARESIZE);
         }
-        if ((lines.length).charAt(j) == '@'){
-        
+        if ((lines[i]).charAt(j) == '@'){
+          fill(0,255,0);
+          square(j*SQUARESIZE,i*SQUARESIZE,SQUARESIZE);
         }
-        if ((lines.length).charAt(j) == 'w'){
-        
+        if ((lines[i]).charAt(j) == 'w'){
+          fill(255,0,0);
+          square(j*SQUARESIZE,i*SQUARESIZE,SQUARESIZE);
         }
-        if ((lines.length).charAt(j) == '.'){
-        
+        if ((lines[i]).charAt(j) == '.'){
+          fill(175);
+          square(j*SQUARESIZE,i*SQUARESIZE,SQUARESIZE);
         }
       }
     }
