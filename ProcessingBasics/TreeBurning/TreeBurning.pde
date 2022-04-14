@@ -83,7 +83,7 @@
    */
   void stringToSquares(String[]lines) {
     for (int i = 0; i < lines.length; i++){
-      for (int j = 0; j < (lines.length).length(); j++{){
+      for (int j = 0; j < (lines.length).length(); j++){
         if ((lines.length).charAt(j) == ' '){
         
         }
@@ -97,6 +97,7 @@
         
         }
       }
+
     }
     /**Complete this method.
      *1. Break up your screen by drawing ROWSxCOLS squares of the same color.
