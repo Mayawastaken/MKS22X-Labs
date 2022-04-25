@@ -18,7 +18,7 @@ public class Orb {
 
   void display() {
     fill(c);
-    ellipse(x, y, radius, radius);
+    ellipse(x, y, radius*2, radius*2);
     //Part 1:
     //draw a ellipse at the x,y position, with the correct radius.
     //make sure it is the correct color
@@ -35,16 +35,33 @@ public class Orb {
 
     //PART 3
     //Change the speed when you collide with the end of the screen (all 4 sides)
-    if (x == 0 || x == width){
+    if (x <= radius){
+      x = radius;
       xSpeed = 0 - xSpeed;
     }
-    if (y == 0 || y == height){ //eh make it like height - radius and 0 + radius etc so its not in wall
+    if (x >= width - radius){
+      x = width - radius;
+      xSpeed = 0 - xSpeed;
+    }
+    if (y <= radius){
+      y = radius;
       ySpeed = 0 - ySpeed;
     }
+    if (y >= height - radius){
+      y = height - radius;
+      ySpeed = 0 - ySpeed;
+    }
+    //if (x <= 0 || x >= width){
+    //  xSpeed = Math.abs(xSpeed);
+    //}
+    //if (y <= 0 || y >= height){ //eh make it like height - radius and 0 + radius etc so its not in wall
+    //  ySpeed = Math.abs(ySpeed);
+    //}
 
     //Part 4
     //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
     //You don't need a variable for this if every object experiences the same
     //gravitational constant (find the value that looks nice experimentally, 9.8 will not work well).
+    ySpeed += .3;
   }
 }
