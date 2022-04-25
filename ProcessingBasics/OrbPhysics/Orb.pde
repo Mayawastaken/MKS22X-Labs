@@ -1,6 +1,7 @@
 
 public class Orb {
   float x, y;
+  float dx, dy;
   float xSpeed, ySpeed;
   float radius;
   color c;
@@ -51,17 +52,15 @@ public class Orb {
       y = height - radius;
       ySpeed = 0 - ySpeed;
     }
-    //if (x <= 0 || x >= width){
-    //  xSpeed = Math.abs(xSpeed);
-    //}
-    //if (y <= 0 || y >= height){ //eh make it like height - radius and 0 + radius etc so its not in wall
-    //  ySpeed = Math.abs(ySpeed);
-    //}
 
     //Part 4
     //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
     //You don't need a variable for this if every object experiences the same
     //gravitational constant (find the value that looks nice experimentally, 9.8 will not work well).
     ySpeed += .3;
+  }
+  
+  void attract(Orb other){
+  //double d = dist(x, y,
   }
 }
