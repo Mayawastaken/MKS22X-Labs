@@ -1,7 +1,6 @@
 
 public class Orb {
   float x, y;
-  float dx, dy;
   float xSpeed, ySpeed;
   float radius;
   color c;
@@ -61,6 +60,7 @@ public class Orb {
   }
   
   void attract(Orb other){
-  //double d = dist(x, y,
+    xSpeed += (other.x - x) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
+    ySpeed += (other.y - y) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
   }
 }
