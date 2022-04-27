@@ -19,6 +19,7 @@ public class Orb {
   void display() {
     fill(c);
     ellipse(x, y, radius*2, radius*2);
+    line(x, y, 5*xSpeed + x, 5*ySpeed + y);
     //Part 1:
     //draw a ellipse at the x,y position, with the correct radius.
     //make sure it is the correct color
@@ -56,11 +57,13 @@ public class Orb {
     //Add a small adjustment for gravity. Gravity is a ySpeed acceleration...
     //You don't need a variable for this if every object experiences the same
     //gravitational constant (find the value that looks nice experimentally, 9.8 will not work well).
-    ySpeed += .3;
+    //ySpeed += .3;
   }
   
   void attract(Orb other){
-    xSpeed += (other.x - x) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
-    ySpeed += (other.y - y) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
+    x+=xSpeed;
+    y+=ySpeed;
+    xSpeed += 20* (other.x - x) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
+    ySpeed += 20 * (other.y - y) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
   }
 }

@@ -2,8 +2,10 @@
 ArrayList<Orb>orbList;
 Orb center;
 boolean background = true;
-int GRAVITY = 0;
-int ORBIT = 1;
+boolean gravity = true;
+final int GRAVITY = 0;
+final int ORBIT = 1;
+final int SPRING = 2;
 int MODE = GRAVITY;
 
 
@@ -27,7 +29,10 @@ void keyPressed() {
     background = !background;
   }
   else if (key == ' '){
-    MODE = (MODE+1)%2;
+    MODE = (MODE+1)%3;
+  }
+  else if (key == 'g' || key == 'G'){
+    gravity = !gravity;
   }
 }
 void draw() {
@@ -35,8 +40,15 @@ void draw() {
      background(255);
   }
   for (Orb o : orbList) {
-    o.move();
-    //center.attract(o);
+    if (MODE == 0){
+      o.move();
+    }
+    if (MODE == 1){
+      o.attract(center);
+    }
+    if (gravity == true){
+      o.ySpeed += .15; 
+    }
     o.display();   
   }
   center.display();
