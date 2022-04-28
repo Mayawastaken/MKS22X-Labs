@@ -1,8 +1,11 @@
-
+//OOPS flip other and center in like usage yk awkward
 ArrayList<Orb>orbList;
 Orb center;
 boolean background = true;
 boolean gravity = true;
+final float SPRING_CONSTANT = .015;
+final float SPRING_LENGTH = 150;
+final float SPRING_DAMPEN = .995;
 final int GRAVITY = 0;
 final int ORBIT = 1;
 final int SPRING = 2;
@@ -39,12 +42,21 @@ void draw() {
   if (background == true){
      background(255);
   }
+  else{
+    fill(255);
+    stroke(255);
+    rect(0, 0, 80, 80);
+    stroke(0);
+  }
   for (Orb o : orbList) {
     if (MODE == 0){
       o.move();
     }
     if (MODE == 1){
-      o.attract(center);
+      center.attract(o);
+    }
+    if (MODE == 2){
+      center.attractSpring(o);
     }
     if (gravity == true){
       o.ySpeed += .15; 
@@ -55,5 +67,5 @@ void draw() {
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
-  text(MODE, 20, 60); //prints number as of now
+  text(MODE, 20, 60); //prints number as of now  -- use if statements
 }

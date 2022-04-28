@@ -61,9 +61,19 @@ public class Orb {
   }
   
   void attract(Orb other){
-    x+=xSpeed;
-    y+=ySpeed;
-    xSpeed += 20* (other.x - x) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
-    ySpeed += 20 * (other.y - y) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
+    other.x += other.xSpeed;
+    other.y += other.ySpeed;
+    other.xSpeed += 20 * (x - other.x) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
+    other.ySpeed += 20 * (y - other.y) / (dist(x, y, other.x, other.y) * dist(x, y, other.x, other.y));
+  }
+  
+  void attractSpring(Orb other){
+    other.x += other.xSpeed;
+    other.y += other.ySpeed;
+    float force = SPRING_CONSTANT * (dist(x, y, other.x, other.y) - SPRING_LENGTH);
+    other.xSpeed += force * (x - other.x) / dist(x, y, other.x, other.y);
+    other.xSpeed *= SPRING_DAMPEN;
+    other.ySpeed += force * (y - other.y) / dist(x, y, other.x, other.y);
+    other.ySpeed *= SPRING_DAMPEN;
   }
 }
