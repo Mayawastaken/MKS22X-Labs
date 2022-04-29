@@ -45,7 +45,7 @@ void draw() {
   else{
     fill(255);
     stroke(255);
-    rect(0, 0, 80, 80);
+    rect(0, 0, 125, 80);
     stroke(0);
   }
   for (Orb o : orbList) {
@@ -67,5 +67,13 @@ void draw() {
   fill(0);
   text(frameRate, 20, 20);
   text(orbList.size(), 20, 40);
-  text(MODE, 20, 60); //prints number as of now  -- use if statements
+  if (MODE == 0){
+    text("MODE: GRAVITY", 20, 60);
+  }
+  if (MODE == 1){
+    text("MODE: ORBIT", 20, 60);
+  }
+  if (MODE == 2){
+    text("MODE: SPRING", 20, 60);
+  }
 }
