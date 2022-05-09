@@ -16,6 +16,7 @@ public class OrbList {
   */
   void add(OrbNode orb){
     //insert orb at the end of the list before the last node.
+    OrbNode temp = new OrbNode();
   }
 
   /**
@@ -24,6 +25,10 @@ public class OrbList {
   */
   void processAll() {
     OrbNode current = first;
+    while (current != null){
+      current.move();
+      current = current.next;
+    }
     //advance current to next until it is null, move() each of the nodes
   }
   /**
