@@ -50,6 +50,12 @@ public class OrbNode {
   void move() {
     //have prev and next apply spring force to this node;
     /*you write this part*/
+    if (next != null){
+     this.springAttract(next); //is it other way?
+    }
+    if (prev != null){
+     this.springAttract(prev); //is it other way?
+    }
 
     //apply velocity to position
     x+=dx;
