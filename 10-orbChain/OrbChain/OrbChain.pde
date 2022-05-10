@@ -1,8 +1,9 @@
 
 final static int SPRING = 2;
-final static float SPRING_LENGTH = 50;
-final static float SPRING_DAMPEN = 0.990;
-final static float SPRING_CONSTANT = 0.015;
+static float GRAVITY = 0.35;
+static float SPRING_LENGTH = 50;
+static float SPRING_DAMPEN = 0.990;
+static float SPRING_CONSTANT = 0.015;
 final static int MODE = SPRING;
 OrbList orbs;
 void setup() {
@@ -16,4 +17,32 @@ void draw() {
   background(255);
   orbs.processAll();
   orbs.display();
+}
+
+void keyPressed(){
+  if (key == 49){ //48 = '0' etc
+    SPRING_CONSTANT *= 1.2;
+  }
+  if (key == 50){ //48 = '0' etc
+    SPRING_CONSTANT *= .8;
+  }
+  if (key == 51){ //48 = '0' etc
+    SPRING_DAMPEN *= 1.02;
+  }
+  if (key == 52){ //48 = '0' etc
+    SPRING_DAMPEN *= .98;
+  }
+  if (key == 53){ //48 = '0' etc
+    SPRING_LENGTH *= 1.5;
+  }
+  if (key == 54){ //48 = '0' etc
+    SPRING_LENGTH *= .667;
+  }
+  if (key == 55){ //48 = '0' etc
+    GRAVITY *= 1.1;
+  }
+  if (key == 56){ //48 = '0' etc
+    GRAVITY *= .9;
+  }
+  
 }
