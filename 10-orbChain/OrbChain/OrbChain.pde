@@ -5,6 +5,7 @@ static float SPRING_LENGTH = 50;
 static float SPRING_DAMPEN = 0.990;
 static float SPRING_CONSTANT = 0.015;
 final static int MODE = SPRING;
+static int CLICK_MODE;
 OrbList orbs;
 void setup() {
   size(1000, 800);
@@ -12,6 +13,7 @@ void setup() {
 }
 void mouseClicked() {
   orbs.add(new OrbNode(mouseX,mouseY,0,0,30));
+  //orbs.delete(orbs.getNodeAt(mouseX, mouseY));
 }
 void draw() {
   background(255);
