@@ -21,22 +21,24 @@ void draw() {
 
 void keyPressed(){
   if (key == 49){ //48 = '0' etc
-    SPRING_CONSTANT *= 1.2;
+    SPRING_CONSTANT *= 1.1;
   }
   if (key == 50){ //48 = '0' etc
-    SPRING_CONSTANT *= .8;
+    SPRING_CONSTANT *= .9;
   }
   if (key == 51){ //48 = '0' etc
-    SPRING_DAMPEN *= 1.02;
+    if (SPRING_DAMPEN * 1.05 <= 1){
+      SPRING_DAMPEN *= 1.05;
+    }
   }
   if (key == 52){ //48 = '0' etc
-    SPRING_DAMPEN *= .98;
+    SPRING_DAMPEN *= .95;
   }
   if (key == 53){ //48 = '0' etc
-    SPRING_LENGTH *= 1.5;
+    SPRING_LENGTH *= 1.1;
   }
   if (key == 54){ //48 = '0' etc
-    SPRING_LENGTH *= .667;
+    SPRING_LENGTH *= .9;
   }
   if (key == 55){ //48 = '0' etc
     GRAVITY *= 1.1;
