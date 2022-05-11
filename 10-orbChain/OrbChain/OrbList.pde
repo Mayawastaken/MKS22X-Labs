@@ -70,4 +70,10 @@ public class OrbList {
       current.prev = toBeAdded;
     }
   }
+  
+  void delete(OrbNode target){
+    target.prev.next = target.next;
+    target.next.prev = target.prev;
+  //target go poof
+  }
 }
