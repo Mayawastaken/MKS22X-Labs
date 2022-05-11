@@ -47,4 +47,27 @@ public class OrbList {
     }
     //advance current to next until it is null, display() each of the nodes
   }
+  
+  void add(int xcor,OrbNode toBeAdded){
+    OrbNode current = first;
+    if (xcor >= last.prev.x){
+      add(toBeAdded);
+    }
+    else if (xcor <= first.next.x){
+      OrbNode temp = first.next;
+      toBeAdded.next = temp;
+      toBeAdded.prev = first;
+      temp.prev = toBeAdded;
+      first.next = toBeAdded;
+    }
+    else{
+      while (current != null && current.x < xcor){
+        current = current.next;
+      } // check edge cases like if xcore > last.prev then add it there
+      toBeAdded.next = current.prev; // wont go null right bcs of else if
+      toBeAdded.prev = current;
+      (current.prev).next = toBeAdded;
+      current.prev = toBeAdded;
+    }
+  }
 }
