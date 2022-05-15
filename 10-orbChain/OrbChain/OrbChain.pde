@@ -25,6 +25,21 @@ void mouseClicked() {
 }
 void draw() {
   background(255);
+   String mode = "";
+  if (CLICK_MODE == 0){
+    mode += "Add";
+  }
+  else if (CLICK_MODE == 1){
+    mode += "Insert";
+  }
+  else if (CLICK_MODE == 2){
+    mode += "Delete";
+  }
+  text("S. CONSTANT: " + SPRING_CONSTANT,50,30);
+  text("S. DAMPEN: " + SPRING_DAMPEN,250,30);
+  text("S. LENGTH: " + SPRING_LENGTH,450,30);
+  text("GRAVITY: " + GRAVITY,650,30);
+  text("C. MODE: " + mode,850,30);
   orbs.processAll();
   orbs.display();
 }
@@ -39,6 +54,9 @@ void keyPressed(){
   if (key == 51){ //48 = '0' etc
     if (SPRING_DAMPEN * 1.05 <= 1){
       SPRING_DAMPEN *= 1.05;
+    }
+    else{
+      SPRING_DAMPEN = 1;
     }
   }
   if (key == 52){ //48 = '0' etc
