@@ -73,17 +73,20 @@ public class OrbList {
   OrbNode getNodeAt(int x, int y){
     OrbNode current = first.next;
     while (current != null && current != last){
-      if (dist(x, y, current.x, current.y) < 30){ //30 = radius
+      if (dist(x, y, current.x, current.y) < current.radius){ //30 = radius
         return current;
       }
+      current = current.next;
     }
     return null; // what do I return here
   
   }
   
   void delete(OrbNode target){
-    target.prev.next = target.next;
-    target.next.prev = target.prev;
+    if (target != null){
+      target.prev.next = target.next;
+      target.next.prev = target.prev;
+    }
   //target go poof
   }
 }
