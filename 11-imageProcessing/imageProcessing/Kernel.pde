@@ -20,20 +20,27 @@ public class Kernel {
   *     0-255, then clamp it to that range (< 0 becomes 0, >255 becomes 255)
   */
   color calcNewColor(PImage img, int x, int y) {
-    //color c = color(0,0,0); //width - 1 height - 1 is bot right
     if (x == 0 || y == 0 || x == img.width - 1 || y == img.height - 1){
       return color(0,0,0);
     }
-    float redVal = red(get(x,y)); //um do i need to specify width n height
-    float greenVal = green(get(x,y)); //um do i need to specify
-    float blueVal = blue(get(x,y)); //um do i need to specify 
-    for (int i = x - 1; i <= x + 1; i++){
-      for (int j = y - 1; j <= y + 1; j++){
-        redVal += (red(get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
-        greenVal += (green(get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
-        blueVal += (blue(get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
+    float redVal = 0; //um do i need to specify width n height
+    float greenVal = 0;
+    float blueVal = 0; 
+    for (int i = 0; i < 3; i ++){
+      for (int j = 0; j < 3; j++){
+        color sample = img.get(x+j-1,y+i-1);
+        redVal += red(sample)*kernel[i][j];
+        greenVal += red(sample)*kernel[i][j];
+        blueVal += red(sample)*kernel[i][j];
       }
     }
+    //for (int i = x - 1; i <= x + 1; i++){
+    //  for (int j = y - 1; j <= y + 1; j++){
+    //    redVal += (red(img.get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
+    //    greenVal += (green(img.get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
+    //    blueVal += (blue(img.get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
+    //  }
+    //}
     if (redVal > 255){
       redVal = 255;
     }
@@ -61,9 +68,9 @@ public class Kernel {
   /**You must write this method that applies the kernel to the source,
     *and saves the data to the destination.*/
   void apply(PImage source, PImage destination) {
-    for (int i = 1; i < source.width-1; i++){
-      for (int j = 1; i < source.height-1; i++){
-         destination.set(i+source.width,j,calcNewColor(source, i, j));
+    for (int i = 0; i < source.height; i++){ //is it width or height here
+      for (int j = 0; i < source.width; i++){
+         destination.set(i,j,calcNewColor(source, i, j)); //do i add width or smth
       }
     }
   }
