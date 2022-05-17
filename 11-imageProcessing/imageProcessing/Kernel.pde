@@ -23,24 +23,17 @@ public class Kernel {
     if (x == 0 || y == 0 || x == img.width - 1 || y == img.height - 1){
       return color(0,0,0);
     }
-    float redVal = 0; //um do i need to specify width n height
+    float redVal = 0; 
     float greenVal = 0;
     float blueVal = 0; 
-    for (int i = 0; i < 3; i ++){
-      for (int j = 0; j < 3; j++){
-        color sample = img.get(x+j-1,y+i-1);
-        redVal += red(sample)*kernel[i][j];
-        greenVal += red(sample)*kernel[i][j];
-        blueVal += red(sample)*kernel[i][j];
+    for (int i = 0; i <= 2; i++){
+      for (int j = 0; j <= 2; j++){
+        color current = img.get(x+j-1,y+i-1);
+        redVal += (red(current) * kernel[i][j]);
+        greenVal += (green(current) * kernel[i][j]);
+        blueVal += (blue(current) * kernel[i][j]);
       }
     }
-    //for (int i = x - 1; i <= x + 1; i++){
-    //  for (int j = y - 1; j <= y + 1; j++){
-    //    redVal += (red(img.get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
-    //    greenVal += (green(img.get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
-    //    blueVal += (blue(img.get(i,j)) * kernel[i-(x-1)][j-(y-1)]);
-    //  }
-    //}
     if (redVal > 255){
       redVal = 255;
     }
@@ -68,11 +61,10 @@ public class Kernel {
   /**You must write this method that applies the kernel to the source,
     *and saves the data to the destination.*/
   void apply(PImage source, PImage destination) {
-    for (int i = 0; i < source.height; i++){ //is it width or height here
-      for (int j = 0; i < source.width; i++){
-         destination.set(i,j,calcNewColor(source, i, j)); //do i add width or smth
+    for (int i = 0; i < source.width; i++){
+      for (int j = 0; j < source.height; j++){
+         destination.set(i,j,calcNewColor(source, i, j));
       }
     }
   }
-
 }
